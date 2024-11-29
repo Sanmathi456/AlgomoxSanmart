@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Designing the Ultimate Smart Grocery Shopping Experience</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    /* Home Page */
+    .category-card {
+      text-align: center;
+      border-radius: 10px;
+      overflow: hidden;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .category-card:hover {
+      transform: scale(1.05);
+    }
+
+    .category-title {
+      margin-top: 10px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #b68d40;
+    }
+
+
+    /* Intro Animation */
+    .marquee-text {
+      font-weight: bold;
+      font-style: italic;
+      display: inline-block;
+      white-space: nowrap;
+      overflow: hidden;
+      font-size: 40px;
+      animation: typing 4s steps(30) 1s forwards,
+        blink-caret 0.75s step-end infinite;
+      margin-top: 50px;
+      margin-bottom: 20px;
+    }
+
+    .text-gradient {
+      background: linear-gradient(45deg, #2c313c, #b68d40);
+      background-clip: text;
+      color: transparent;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-top: 70px;
+      animation: typing 4s steps(30) 1s forwards,
+        blink-caret 0.75s step-end infinite;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 768px) {
+      .marquee-text {
+        font-size: 30px;
+        margin-top: 30px;
+        margin-bottom: 15px;
+      }
+
+      .text-gradient {
+        font-size: 30px;
+        margin-top: 50px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .marquee-text {
+        font-size: 24px;
+        margin-top: 20px;
+        margin-bottom: 10px;
+      }
+
+      .text-gradient {
+        font-size: 24px;
+        margin-top: 30px;
+      }
+    }
+
+    /* Typing animation */
+    @keyframes typing {
+      0% {
+        width: 0;
+      }
+
+      100% {
+        width: 100%;
+      }
+    }
+
+    /* Blinking cursor */
+    @keyframes blink-caret {
+      50% {
+        border-color: transparent;
+      }
+    }
+
+    /* Blinking Button Effect */
+    @keyframes blink {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0;
+      }
+    }
+
+    .blinking-button {
+      animation: blink 1s infinite;
+      background-color: #b68d40;
+      color: white;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+
+    #deals {
+      background: linear-gradient(45deg, #2c313c 50%, #b68d40 50%);
+      padding: 50px 0;
+      color: white;
+    }
+
+    .dark-mode #deals {
+      background: black;
+      color: #b68d40;
+    }
+
+    .text-center {
+      color: black;
+    }
+
+    .lead {
+      color: #b68d40;
+      font-weight: bold;
+      margin-top: 10px;
+      font-size: 20px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .text-center {
+        color: #b68d40;
+      }
+
+      .dark-mode #deals {
+        background: black;
+        color: #b68d40;
+      }
+    }
+
+    .text-dark {
+      color: #b68d40;
+    }
+
+    /* Dark mode style */
+    @media (prefers-color-scheme: dark) {
+      .text-dark {
+        color: white;
+      }
+    }
+
+    /* Deal Card Styling */
+    .deal-card {
+      position: relative;
+      border: 2px solid #2c313c;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #1a1c23;
+      color: white;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .deal-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    /* "Off" Tag */
+    .deal-off {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: red;
+      color: white;
+      padding: 5px 15px;
+      border-radius: 5px;
+      font-weight: bold;
+      animation: blink 1s infinite;
+    }
+
+    /* Button Styling */
+    .btn-danger {
+      background-color: #b68d40;
+      border-color: #b68d40;
+      font-weight: bold;
+    }
+
+    .btn-danger:hover {
+      background-color: #2c313c;
+      color: #b68d40;
+      border-color: #2c313c;
+    }
+
+    /* Contact Us Section */
+    .contact-us-section {
+      background-color: #f8f9fa;
+      padding: 2rem;
+    }
+
+    .contact-us-section h2 {
+      font-size: 2.5rem;
+      color: #333;
+      margin-bottom: 1rem;
+    }
+
+    .contact-us-section p {
+      color: #555;
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-us-section .form-control {
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      padding: 1rem;
+      width: 100%;
+      max-width: 500px;
+      margin-bottom: 1rem;
+    }
+
+    .contact-us-section .btn-primary {
+      background-color: #b68d40;
+      border-color: #2c313c;
+      color: #fff;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+    }
+
+    .contact-us-section .btn-primary:hover {
+      background-color: #2c313c;
+      border-color: #b68d40;
+    }
+
+    @media (max-width: 768px) {
+      .contact-us-section {
+        padding: 1rem;
+      }
+
+      .contact-us-section h2 {
+        font-size: 1.8rem;
+      }
+
+      .contact-us-section p {
+        font-size: 1rem;
+      }
+
+      .contact-us-section .form-control {
+        max-width: 100%;
+      }
+
+      .contact-us-section .btn-primary {
+        padding: 0.75rem 1.2rem;
+        font-size: 0.9rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .contact-us-section h2 {
+        font-size: 1.6rem;
+      }
+
+      .contact-us-section p {
+        font-size: 0.9rem;
+      }
+
+      .contact-us-section .form-control {
+        padding: 0.8rem;
+      }
+
+      .contact-us-section .btn-primary {
+        width: 100%;
+        padding: 1rem;
+        font-size: 1rem;
+      }
+    }
+
+    /* Background Image */
+    .img-fluid {
+      width: 100%;
+    }
+
+    /* Today’s Deal Section */
+    .deal-info {
+      background: linear-gradient(45deg, #2c313c 50%, #b68d40 50%);
+      color: white;
+      border: 2px solid #2c313c;
+      text-align: center;
+    }
+
+    .deal-title {
+      color: white;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .deal-description {
+      color: black;
+      font-weight: bold;
+    }
+
+    .btn {
+      background-color: red;
+    }
+
+    .imgheight {
+      height: 265px;
+    }
+
+    .bold-text {
+      font-weight: bold;
+    }
+
+    .condetail {
+      font-size: 20px;
+      color: #b68d40;
+    }
+
+    .dark-mode img {
+      filter: none;
+    }
+
+    /* serchbarcard */
+    .product-card {
+      background: linear-gradient(45deg, #2c313c 50%, #b68d40 50%);
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      padding: 15px;
+      transition: transform 0.3s ease-in-out;
+      width: 300px;
+      margin-top: 80px;
+      color: white;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .product-image {
+      width: 100%;
+      height: 150px;
+      object-fit: contain;
+    }
+
+    .favorite-icon {
+      position: absolute;
+      width: 24px;
+      right: 10px;
+      top: 10px;
+      cursor: pointer;
+    }
+
+    .product-name {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: white;
+    }
+
+    .product-price {
+      font-size: 1.1rem;
+      color: #28a745;
+      margin: 10px 0;
+    }
+
+    .add-to-cart-btn {
+      background: #b68d40;
+      color: #fff;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .add-to-cart-btn:hover {
+      background: #555;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .product-card {
+        padding: 10px;
+      }
+
+      .product-name {
+        font-size: 1rem;
+      }
+
+      .product-price {
+        font-size: 0.9rem;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .product-card {
+        margin-bottom: 15px;
+        padding: 8px;
+        margin-top: 120px;
+      }
+
+      .product-image {
+        height: 120px;
+      }
+
+      .product-name {
+        font-size: 0.95rem;
+      }
+
+      .product-price {
+        font-size: 0.85rem;
+      }
+
+      .add-to-cart-btn {
+        font-size: 0.9rem;
+        padding: 6px 12px;
+      }
+    }
+
+    .dark-mode .lead.text-dark {
+      color: white;
+    }
+
+    .quick-links ul {
+      padding-left: 0;
+    }
+
+    .quick-links ul li {
+      margin: 5px 0;
+    }
+
+    .quick-links a {
+      text-decoration: none;
+      color: white;
+      transition: color 0.3s;
+    }
+
+    .quick-links a:hover {
+      color: #f8f9fa;
+    }
+
+    @media (max-width: 768px) {
+      .quick-links h5 {
+        text-align: center;
+      }
+
+      .quick-links ul {
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 767px) {
+      .image-section {
+        margin-top: -28px;
+      }
+    }
+
+    @media (max-width: 767px) {
+      h2.text-center {
+        margin-top: -65px;
+      }
+    }
+
+
+    /*  footer */
+    .sticky-footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: #b68d40;
+      padding: 10px 0;
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: auto;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    .footer-logo-text {
+      font-size: 20px;
+      color: white;
+      margin-top: 5px;
+      text-align: center;
+    }
+
+    /* Footer Links (Icons) */
+    .footer-links {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    .footer-links li {
+      list-style: none;
+    }
+
+    .footer-links img {
+      width: 26px;
+      height: 26px;
+    }
+
+    /* Search Bar in Footer */
+    .search-bar-container {
+      display: flex;
+      justify-content: center;
+    }
+
+    .footer-search-input {
+      padding: 5px;
+      width: 80%;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      outline: none;
+    }
+
+    .search-icon img {
+      width: 20px;
+      height: 20px;
+      margin-left: 10px;
+      cursor: pointer;
+    }
+
+    /* Make it mobile-responsive */
+    @media (max-width: 767px) {
+      .footer-links {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+      }
+
+      .footer-logo-text {
+        font-size: 12px;
+      }
+
+      .footer-search-input {
+        width: 70%;
+      }
+    }
+
+    /* Hide footer for desktop view */
+    @media (min-width: 992px) {
+      .sticky-footer {
+        display: none;
+      }
+    }
+
+    /* social icons */
+
+    .social-icon {
+      width: 40px;
+      height: 40px;
+      margin: 0 10px;
+      transition: color 0.3s ease;
+      background-color: white;
+      padding: 10px;
+      border-radius: 50%;
+    }
+
+
+    .payment-icon {
+      width: 50px;
+      height: 30px;
+      margin: 0 15px;
+    }
+
+    .list-inline-item {
+      display: inline-block;
+    }
+
+    .quick-links a {
+      text-decoration: none;
+    }
+
+    /* payment images */
+    .payment-icon {
+      width: 60px;
+      height: 50px;
+    }
+
+    .sendbtn {
+      margin-bottom: 40px;
+      padding: 10px;
+      border: none;
+      border-radius: 10px;
+      width: 200px;
+      background-color: #b68d40;
+
+    }
+
+    .sendbtn:hover {
+      background-color: #1a1c23;
+    }
+
+    .meatseafoodimg {
+      height: 300px;
+
+    }
+
+    .smallhead {
+      font-size: 25px;
+    }
+
+    @media (max-width: 600px) {
+      .smallhead {
+        font-size: 18px;
+        text-align: center;
+
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="tutorial-modal" class="modal fade" tabindex="-1" aria-labelledby="tutorialModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="tutorialModalLabel">
+            Welcome to Sanmathi Mart
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <h4>How to Shop:</h4>
+          <ul>
+            <li>Explore categories using the dropdown menu</li>
+            <li>Use the search bar to find products quickly</li>
+            <li>Add items to your favorites and cart easily</li>
+            <li>Sign up to get personalized offers</li>
+          </ul>
+          <button id="complete-tutorial" class="btn btn-primary">
+            Got it!
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <header>
+    <div id="tutorial-modal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5>Welcome to Sanmathi Mart</h5>
+          <button class="close" id="close-modal">×</button>
+        </div>
+        <div class="modal-body">
+          <h4>How to Shop:</h4>
+          <ul>
+            <li>Explore categories using the dropdown menu</li>
+            <li>Use the search bar to find products quickly</li>
+            <li>Add items to your favorites and cart easily</li>
+            <li>Sign up to get personalized offers</li>
+          </ul>
+          <button id="complete-tutorial" class="btn">Got it!</button>
+        </div>
+      </div>
+    </div>
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand d-flex align-items-center" href="#">
+          <img src="./img/grocery.jpg" class="logo" alt="Sanmathi Logo" />
+          <span class="martname">SANMATHI MART</span>
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <div class="d-flex flex-column flex-lg-row w-100 align-items-center">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <select class="form-select" id="category" onchange="redirectToPage()">
+                  <option value="">Shop by categories</option>
+                  <option value="vegetables&fruits.html" class="selecthover">
+                    Vegetables & Fruits
+                  </option>
+                  <option value="snacks-namkeens.html">
+                    Snacks & Namkeens
+                  </option>
+                  <option value="ready-to-cook.html">Ready to Cook</option>
+                  <option value="ready-to-eat.html">Ready to Eat</option>
+                  <option value="baby-care.html">Baby Care</option>
+                  <option value="household-essentials.html">
+                    Household Essentials
+                  </option>
+                  <option value="stationery.html">Stationery</option>
+                  <option value="skin-care.html">Skin Care</option>
+                  <option value="dairyproducts.html">dairy products</option>
+                </select>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white" href="index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white" href="deal.html">Deals</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white" href="Newarrivals.html">New Arrivals</a>
+              </li>
+            </ul>
+
+            <!-- Search bar -->
+            <div class="search-bar">
+              <input type="text" id="searchInput" class="search-input" placeholder="Search for products..."
+                onkeyup="filterProducts()" />
+              <div class="search-icon">
+                <img src="./img/search.png" alt="Search" />
+              </div>
+            </div>
+            <ul id="suggestionsList" class="suggestions-list"></ul>
+
+            <!-- Icon container -->
+            <div class="icon-container d-flex align-items-center mt-2 mt-lg-0">
+              <a href="favourite.html" class="cart-icon">
+                <img src="./img/heart.jpg" alt="Favorite Products" />
+                <span class="cart-badge" id="fav-count">0</span>
+              </a>
+              <a href="cart.html" class="cart-icon">
+                <img src="./img/cart.png" alt="Cart" />
+                <span class="cart-badge" id="cart-count">0</span>
+              </a>
+              <div class="d-flex align-items-center">
+                <a href="signup.html">
+                  <img src="./img/profile.png" alt="Profile" />
+                </a>
+                <a href="signup.html">
+                  <button class="create-signup-btn">Signup</button>
+                </a>
+              </div>
+
+              <!-- Dark Mode Toggle -->
+              <div class="dark-mode-toggle d-flex align-items-center ms-3">
+                <img src="./img/sun1.png" id="theme-toggle-icon" alt="Toggle Dark Mode" class="toggle-icon"
+                  onclick="toggleDarkMode()" style="cursor: pointer" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <div id="productContainer" class="container mt-3">
+    <div class="row" id="productRow"></div>
+  </div>
+  <div id="product-container"></div>
+
+
+  <section class="hero-section text-dark py-5">
+    <div class="container text-center">
+      <h1 class="display-4 mt-5 text-gradient marquee-text">
+        Hey Welcome to SanMart!!.....
+      </h1>
+      <p class="smallhead">
+        Your one-stop destination for all grocery needs
+      </p>
+      <a href="#categories" class="btn btn-light btn-lg blinking-button">Shop Now</a>
+    </div>
+  </section>
+
+  <section class="image-section py-5">
+    <div class="container text-center">
+      <div class="row">
+        <div class="col-12">
+          <div id="imageCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="1000">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="./Home/veg&fru back.jpg" alt="Image 1" class="img-fluid rounded-3" />
+              </div>
+              <div class="carousel-item">
+                <img src="./Home/bby.jpg" alt="Image 2" class="img-fluid rounded-3" />
+              </div>
+              <div class="carousel-item">
+                <img src="./Home/cleaning.jpg" alt="Image 3" class="img-fluid rounded-3" />
+              </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#imageCarousel" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#imageCarousel" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="categories" class="categories-section py-5">
+    <div class="container">
+      <h2 class="text-center mb-5">Shop by Categories</h2>
+      <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
+        <a href="vegetables&fruits.html" style="text-decoration: none">
+          <div class="col">
+            <div class="category-card">
+              <img src="./Home/fru&veg.jpg" alt="Vegetables & Fruits" class="img-fluid rounded-3" />
+              <h3 class="category-title">Vegetables & Fruits</h3>
+            </div>
+          </div>
+        </a>
+        <a href="snacks-namkeens.html" style="text-decoration: none">
+          <div class="col">
+            <div class="category-card">
+              <img src="./Home/snacks and namkeens.jpg" alt="Snacks & Namkeens" class="img-fluid rounded-3 " />
+              <h3 class="category-title">Snacks & Namkeens</h3>
+            </div>
+          </div>
+        </a>
+        <a href="ready-to-cook.html" style="text-decoration: none">
+          <div class="col">
+            <div class="category-card">
+              <img src="./Home/meat&seafood.jpg" alt="Ready to Cook" class="img-fluid rounded-3 meatseafoodimg" />
+              <h3 class="category-title">Ready to Cook</h3>
+            </div>
+          </div>
+        </a>
+        <a href="ready-to-eat.html" style="text-decoration: none">
+          <div class="col">
+            <div class="category-card">
+              <img src="./Home/ready to eat.jpg" alt="Ready to Eat" class="img-fluid rounded-3" />
+              <h3 class="category-title">Ready to Eat</h3>
+            </div>
+          </div>
+        </a>
+        <a href="skin-care.html" style="text-decoration: none">
+          <div class="col">
+            <div class="category-card">
+              <img src="./Home/skincare.jpg" alt="Skin Care" class="img-fluid rounded-3" />
+              <h3 class="category-title">Skin Care</h3>
+            </div>
+          </div>
+        </a>
+        <a href="stationery.html" style="text-decoration: none">
+          <div class="col">
+            <div class="category-card">
+              <img src="./Home/stationaries.jpg" alt="Stationery" class="img-fluid rounded-3" />
+              <h3 class="category-title">Stationary</h3>
+            </div>
+          </div>
+        </a>
+        <a href="household-essentials.html" style="text-decoration: none">
+          <div class="col">
+            <div class="category-card">
+              <img src="./Home/household essentials.jpg" alt="Household Essentials" class="img-fluid rounded-3" />
+              <h3 class="category-title">Household Essentials</h3>
+            </div>
+          </div>
+        </a>
+        <a href="baby-care.html" style="text-decoration: none">
+          <div class="col">
+            <div class="category-card">
+              <img src="./Home/babycare1.jpg" alt="Baby Care" class="img-fluid rounded-3" />
+              <h3 class="category-title">Baby Care</h3>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="image-section">
+    <div class="container text-center">
+      <div class="row">
+        <div class="col-12">
+          <img src="./Home/Freedelivery.jpeg" alt="Best Deals" class="img-fluid rounded-3" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="deals-sectio py-5">
+    <div class="container">
+      <h2 class="text-center mb-4">Today's Hot Deals</h2>
+      <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col">
+          <div class="deal-card">
+            <div class="deal-off">Sale Now</div>
+            <img src="./Home/fru&veg.jpg" alt="Deal 1" class="img-fluid rounded-3" />
+            <div class="deal-info p-3">
+              <h4 class="deal-title">Fresh Organic Vegetables - Offers</h4>
+              <p class="deal-description">
+                Save big on fresh organic veggies today! Limited time offer.
+              </p>
+              <a href="deal.html" class="btn btn-danger">Shop Now</a>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="deal-card">
+            <div class="deal-off">Sale Now</div>
+            <img src="./Home/household essentials.jpg" alt="Deal 2" class="img-fluid rounded-3" />
+            <div class="deal-info p-3">
+              <h4 class="deal-title">Buy Houseneeds</h4>
+              <p class="deal-description">
+                Hurry! Offer valid while stocks last. Don't miss out.
+              </p>
+              <a href="deal.html" class="btn btn-danger">Shop Now</a>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="deal-card">
+            <div class="deal-off">Sale Now</div>
+            <img src="./Home/babycare1.jpg" alt="Deal 3" class="img-fluid rounded-3" />
+            <div class="deal-info p-3">
+              <h4 class="deal-title">Exclusive Baby Care Bundle - Offers</h4>
+              <p class="deal-description">
+                Get your baby essentials at a discounted price today!
+              </p>
+              <a href="deal.html" class="btn btn-danger">Shop Now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <section class="contact-us-section dark-mode py-5" id="deals">
+    <div class="container text-center">
+      <h2 class="display-4 contactheading" style="color:white">Contact Us</h2>
+      <p class="lead">We'd love to hear from you! Reach out to us anytime.</p>
+      <div class="row">
+        <div class="col-md-4">
+          <h5 class="text-white bold-text">Email📧</h5>
+          <p class="condetail">sanmart@gmail.com</p>
+        </div>
+        <div class="col-md-4">
+          <h5 class="text-white bold-text">Call📳</h5>
+          <p class="condetail">+91 6369306199</p>
+        </div>
+        <div class="col-md-4">
+          <h5 class="text-white bold-text">Visit🛒</h5>
+          <p class="condetail">Gandhi Street, Salem City, India</p>
+        </div>
+      </div>
+      <section class="footer">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+
+              <!-- Social Media Links -->
+              <div class="social-media mt-4">
+                <h5 class="text-white bold-text">Follow Us</h5>
+                <ul class="list-inline">
+                  <li class="list-inline-item">
+                    <a href="https://wa.me/6369306199" target="_blank">
+                      <img src="./Home/whatsapp-removebg-preview.png" alt="WhatsApp" class="social-icon" />
+                    </a>
+                  </li>
+                  <li class="list-inline-item">
+                    <a href="mailto:sanmart@gmail.com" target="_blank">
+                      <img src="./Home/mail-removebg-preview.png" alt="Email" class="social-icon" />
+                    </a>
+                  </li>
+                  <li class="list-inline-item">
+                    <a href="https://www.instagram.com/sanmart" target="_blank">
+                      <img src="./Home/instagram-removebg-preview.png" alt="Instagram" class="social-icon" />
+                    </a>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Payment Options -->
+              <div class="payment-options mt-4">
+                <h5 class="text-white bold-text">Payment Options</h5>
+                <ul class="list-inline">
+                  <li class="list-inline-item">
+                    <img src="./Home/debitcard-removebg-preview.png" alt="Debit Card" class="payment-icon" />
+                  </li>
+                  <li class="list-inline-item">
+                    <img src="./Home/creditcard-removebg-preview.png" alt="Credit Card" class="payment-icon" />
+                  </li>
+                  <li class="list-inline-item">
+                    <img src="./Home/paytm-removebg-preview.png" alt="Paytm" class="payment-icon" />
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Quick Links Section -->
+              <div class="quick-links mt-4">
+                <h5 class="text-white bold-text">Quick Links</h5>
+                <ul class="list-unstyled text-white">
+                  <li><a href="index.html" class="text-white">Home</a></li>
+                  <li><a href="deal.html" class="text-white">Deals</a></li>
+                  <li><a href="Newarrivals.html" class="text-white">New Arrivals</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <!-- Contact Form -->
+              <form action="feedback.html" method="POST" class="mt-4">
+                <div class="form-row">
+                  <div class="col-md-6 mb-3">
+                    <input type="text" class="form-control" id="name" placeholder="Enter your name" required />
+                  </div>
+                  <div class="col-md-6 mb-3">
+                    <input type="email" class="form-control" id="email" placeholder="Enter your email" required />
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <textarea class="form-control" id="message" rows="4" placeholder="Write your message here"
+                    required></textarea>
+                </div>
+                <button type="submit" class="sendbtn">Send Message</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </section>
+
+  <footer class="sticky-footer">
+    <div class="container d-flex justify-content-between align-items-center">
+      <ul class="footer-links d-flex justify-content-between w-100">
+        <li><a href="index.html"><img src="./Home/home_processed.png" alt="Home" /></a></li>
+        <li><a href="vegetables&fruits.html"><img src="./Home/categories_processed.png" alt="Categories" /></a></li>
+        <li><a href="cart.html"><img src="./img/cart.png" alt="search" /></a></li>
+        <li><a href="deal.html"><img src="./Home/dealing_processed.png" alt="Deals" /></a></li>
+        <li><a href="Newarrivals.html"><img src="./Home/new arrival_processed.png" alt="New Arrivals" /></a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="./js/script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

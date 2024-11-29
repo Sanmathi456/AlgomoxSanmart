@@ -1,0 +1,228 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.product-detail-container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  margin: 20px;
+}
+.product-detail {
+  display: flex;
+  flex-direction: column; 
+  align-items: center;
+  text-align: center;
+}
+
+.product-detail-image {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.product-info {
+  padding: 10px;
+}
+
+.product-name {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.product-description {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.product-price {
+  font-size: 20px;
+  color: #2d9cdb;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.reward {
+  font-size: 14px;
+  color: #28a745;
+  margin-bottom: 20px;
+}
+
+.whatsapp-btn {
+  background-color: #25D366; 
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-bottom: 20px;
+}
+
+.whatsapp-btn:hover {
+  background-color: #128C7E; 
+}
+
+/* Review Section */
+.review-section {
+  margin-top: 40px;
+  padding: 20px;
+  border-top: 2px solid #ddd;
+}
+
+.review-form input, .review-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.review-form button {
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.review-form button:hover {
+  background-color: #218838;
+}
+
+.reviews-list {
+  margin-top: 20px;
+}
+
+.review {
+  background-color: #f8f8f8;
+  padding: 15px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
+
+.review h4 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.review p {
+  font-size: 14px;
+  color: #555;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .product-detail {
+    flex-direction: column; 
+    align-items: center;
+  }
+
+  .product-detail-image {
+    max-width: 100%; 
+    margin-bottom: 20px;
+  }
+
+  .product-name {
+    font-size: 22px;
+  }
+
+  .product-description {
+    font-size: 14px;
+  }
+
+  .product-price {
+    font-size: 18px;
+  }
+
+  .reward {
+    font-size: 12px;
+  }
+
+  .whatsapp-btn {
+    width: 100%; 
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  .review-form input, .review-form textarea {
+    font-size: 14px;
+    padding: 12px;
+  }
+
+  .review-form button {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 10px;
+  }
+
+  .product-detail-container {
+    padding: 15px;
+    width: 100%;
+    margin: 0;
+  }
+
+  .product-name {
+    font-size: 20px;
+  }
+
+  .product-description {
+    font-size: 12px;
+  }
+
+  .product-price {
+    font-size: 16px;
+  }
+
+  .whatsapp-btn {
+    padding: 15px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 600px) {
+  .review-form input, .review-form textarea {
+    font-size: 14px;
+  }
+
+  .review-form button {
+    font-size: 14px;
+  }
+
+  .reviews-list {
+    margin-top: 15px;
+  }
+
+  .review {
+    padding: 10px;
+    font-size: 14px;
+  }
+}
+
+

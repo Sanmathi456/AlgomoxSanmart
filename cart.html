@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Designing the Ultimate Smart Grocery Shopping Experience</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.cart-container {
+  display: flex;
+  justify-content: center; 
+  align-items: flex-start;  
+  min-height: 100vh;       
+  padding: 20px;
+  box-sizing: border-box;
+  flex-direction: column;
+}
+
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; 
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 500px;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+  background: linear-gradient(45deg, #2c313c 50%, #b68d40 50%);
+  transition: all 0.3s ease;
+  color: white;
+}
+
+.cart-item-img {
+  width: 100px; 
+  height: 100px; 
+  object-fit: cover;
+  margin-right: 20px;
+  border-radius: 5px;
+}
+
+.cart-item-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: black;
+  margin-right: 20px;
+}
+
+.cart-item-details h3 {
+  margin: 0;
+  font-size: 16px;
+  color: white;
+}
+
+.cart-item-details .price {
+  font-size: 14px;
+  color: #f1c40f;
+  font-weight: bold;
+}
+
+.cart-item button {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  max-width: 150px;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.cart-item button:hover {
+  background-color: #c0392b;
+}
+
+/* Total Price Styling */
+.total-price {
+  font-size: 16px;
+  font-weight: bold;
+}
+body.dark-mode {
+  background-color: #121212;
+  color: black;
+}
+
+body.dark-mode .navbar {
+  background-color: #333;
+}
+
+body.dark-mode .product-card {
+  background-color: black;
+  border-color: #555;
+  color: black;
+}
+
+body.dark-mode .search-input {
+  background-color: #555;
+  color: white;
+}
+
+body.dark-mode .remove-btn {
+  background-color: #444;
+}
+
+body.dark-mode .navbar-nav .nav-link {
+  color: white;
+}
+
+body.dark-mode .navbar .navbar-toggler-icon {
+  color: white;
+}
+
+body.dark-mode .search-bar .search-input {
+  background-color: #555;
+  color: black;
+}
+
+.dark-mode-toggle {
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+  margin-top: -30px;
+}
+
+.d-flex {
+  display: flex;
+  align-items: center;
+}
+@media (max-width: 768px) {
+  .cart-item {
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center;
+    width: 100%; 
+  }
+
+  .cart-item-img {
+    width: 250px; 
+    height: 250px; 
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  .cart-item-details {
+    margin-right: 0;
+    text-align: center; 
+    margin-bottom: 10px;
+  }
+
+  .cart-item button {
+    width: 100%;
+  }
+
+  h2 {
+    margin-top: 30px;
+    text-align: center;
+  }
+
+  .dark-mode-toggle {
+    margin-top: -20px;
+  }
+
+  .navbar-toggler {
+    width: 60px;
+  }
+
+  .navbar-toggler-icon {
+    width: 30px;
+    height: 30px;
+  }
+
+  .cart-container {
+    flex-direction: column;
+    justify-content: flex-start; 
+  }
+}
+@media (max-width: 600px) {
+  .cart-container {
+    padding: 10px;
+  }
+
+  .cart-item {
+    width: 100%; 
+    max-width: 100%;
+  }
+}
+
+  </style>
+
+</head>
+
+<body>
+  <!-- Navbar -->
+  <header>
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark fixed-top">
+      <div class="container-fluid">
+        <!-- Logo and Brand Name -->
+        <a class="navbar-brand d-flex align-items-center" href="#">
+          <img src="./img/grocery.jpg" class="logo" alt="Sanmathi Logo" />
+          <span class="martname">SANMATHI MART</span>
+        </a>
+
+        <!-- Toggler for Mobile View -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Navbar Content -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <div class="d-flex flex-column flex-lg-row w-100 align-items-center">
+            <!-- Menu -->
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <select class="form-select" id="category" onchange="redirectToPage()">
+                  <option value="">Shop by category</option>
+                  <option value="vegetables&fruits.html" class="selecthover">
+                    Vegetables & Fruits
+                  </option>
+                  <option value="snacks-namkeens.html">
+                    Snacks & Namkeens
+                  </option>
+                  <option value="ready-to-cook.html">Ready to Cook</option>
+                  <option value="ready-to-eat.html">Ready to Eat</option>
+                  <option value="baby-care.html">Baby Care</option>
+                  <option value="household-essentials.html">
+                    Household Essentials
+                  </option>
+                  <option value="stationery.html">Stationery</option>
+                  <option value="skin-care.html">Skin Care</option>
+                  <option value="dairyproducts.html">dairy products</option>
+                </select>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white" href="index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white" href="deal.html">Deals</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white" href="Newarrivals.html">New Arrivals</a>
+              </li>
+            </ul>
+
+            <!-- search bar -->
+            <div class="search-bar">
+              <input type="text" class="search-input" placeholder="Search for products..." onkeyup="filterProducts()" />
+              <div class="search-icon">
+                <img src="./img/search.png" alt="Search" />
+              </div>
+            </div>
+
+            <!-- Icons -->
+            <div class="icon-container d-flex align-items-center mt-2 mt-lg-0">
+              <a href="favourite.html" class="cart-icon">
+                <img src="./img/heart.jpg" alt="Favorite Products" />
+                <span class="cart-badge" id="fav-count">0</span>
+              </a>
+              <a href="cart.html" class="cart-icon">
+                <img src="./img/cart.png" alt="Cart" />
+                <span class="cart-badge" id="cart-count">0</span>
+              </a>
+              <div class="d-flex align-items-center">
+                <img src="./img/profile.png" alt="Profile" />
+                <a href="signup.html">
+                  <button class="create-signup-btn">Signup</button>
+                </a>
+              </div>
+
+              <!-- Dark Mode Toggle -->
+              <div class="dark-mode-toggle d-flex align-items-center ms-3">
+                <img src="./img/sun1.png" id="theme-toggle-icon" alt="Toggle Dark Mode" class="toggle-icon"
+                  onclick="toggleDarkMode()" style="cursor: pointer" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Cart Page Content -->
+  <div class="cart-container" style="margin-top: 80px">
+    <h2>Your Cart</h2>
+    <p id="error-message"></p>
+
+    <div id="cart-items" class="cart-items"></div>
+    <div id="cart-total"></div>
+  </div>
+
+  <footer class="sticky-footer">
+    <div class="container d-flex justify-content-between align-items-center">
+      <ul class="footer-links d-flex justify-content-between w-100">
+        <li>
+          <a href="index.html"><img src="./Home/home_processed.png" alt="Home" /></a>
+        </li>
+        <li>
+          <a href="vegetables&fruits.html"><img src="./Home/categories_processed.png" alt="Categories" /></a>
+        </li>
+        <li>
+           <li><a href="cart.html"><img src="./img/cart.png" alt="search" /></a></li>
+        </li>
+        <li>
+          <a href="deal.html"><img src="./Home/dealing_processed.png" alt="Deals" /></a>
+        </li>
+        <li>
+          <a href="Newarrivals.html"><img src="./Home/new arrival_processed.png" alt="New Arrivals" /></a>
+        </li>
+      </ul>
+    </div>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+  <script>
+    function updateCartCount() {
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      let cartCount = document.getElementById("cart-count");
+      if (cartCount) {
+        cartCount.textContent = cart.length;
+      }
+    }
+
+    function updateFavCount() {
+      let fav = JSON.parse(localStorage.getItem("favorites")) || [];
+      let favCount = document.getElementById("fav-count");
+      if (favCount) {
+        favCount.textContent = fav.length;
+      }
+    }
+
+    function redirectToPage() {
+      let category = document.getElementById("category").value;
+      if (category) {
+        window.location.href = category;
+      }
+    }
+
+    function updateCartTotal() {
+      let cart = JSON.parse(localStorage.getItem("cart")) || []; 
+      let cartTotal = document.getElementById("cart-total"); 
+      let total = cart.reduce((sum, item) => sum + item.price, 0); 
+      cartTotal.innerHTML = `Total: $${total.toFixed(2)}`;
+      if (total > 100) {
+        alert("Error: Total cannot exceed $100!");
+        let errorMessage = document.getElementById("error-message");
+        if (errorMessage) {
+          errorMessage.textContent = "Error: Budget is exceed $100!";
+          errorMessage.style.color = "red";
+        }
+      } else {
+        let errorMessage = document.getElementById("error-message");
+        if (errorMessage) {
+          errorMessage.textContent = "";
+        }
+      }
+    }
+
+    function removeFromCart(productName) {
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      cart = cart.filter((item) => item.name !== productName);
+      localStorage.setItem("cart", JSON.stringify(cart));
+      updateCartCount();
+      updateCartTotal(); 
+      document.getElementById(productName).remove();
+    }
+
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark-mode");
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      updateCartCount();
+      updateFavCount();
+
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      let cartContainer = document.getElementById("cart-items");
+      cartContainer.innerHTML = "";
+
+    
+      cart.forEach((item) => {
+        let itemName = item.name || "Product Name Unavailable";
+        let itemDescription = item.description || ""; 
+        let itemPrice = item.price || 0; 
+        let itemImage = item.image || "./img/default-product.jpg"; 
+
+        let cartItem = document.createElement("div");
+        cartItem.classList.add("cart-item");
+        cartItem.id = itemName; 
+        cartItem.innerHTML = `
+            <img src="${itemImage}" alt="${itemName}" class="cart-item-img" />
+            <div class="cart-item-details">
+              <h3>${itemName}</h3>
+              <p>${itemDescription}</p>  <!-- Empty if no description -->
+              <p>$${itemPrice.toFixed(2)}</p>
+            </div>
+            <button onclick="removeFromCart('${itemName}')">Remove</button>
+          `;
+        cartContainer.appendChild(cartItem);
+      });
+
+      updateCartTotal();
+    });
+
+    // Function to toggle dark mode
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark-mode");
+      if (document.body.classList.contains("dark-mode")) {
+        localStorage.setItem("theme", "dark");
+      } else {
+        localStorage.setItem("theme", "light");
+      }
+    }
+    window.onload = function () {
+      const savedTheme = localStorage.getItem("theme");
+      if (savedTheme === "dark") {
+        document.body.classList.add("dark-mode");
+      } else {
+        document.body.classList.remove("dark-mode");
+      }
+    };
+  </script>
+</body>
+
+</html>

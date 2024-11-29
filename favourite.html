@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Designing the Ultimate Smart Grocery Shopping Experience</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+  <style>
+    h1 {
+      text-align: center;
+      margin: 20px 0;
+      font-style: italic;
+      color: #2c313c;
+    }
+
+   
+    #favorite-products {
+      display: grid;
+      grid-template-columns: repeat(4,
+          1fr);
+      gap: 20px;
+      padding: 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .product-card {
+      border: 1px solid #2c313c;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      padding: 10px;
+      background-color: tan;
+      transition: transform 0.2s ease-in-out;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      height: 350px;
+    }
+
+    .product-card:hover {
+      transform: scale(1.05);
+      background-color: #2c313c;
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+
+    .product-name {
+      font-size: 1.1em;
+      text-align: center;
+      margin: 10px 0;
+      min-height: 40px;
+    }
+
+    .product-price {
+      color: white;
+      font-weight: bold;
+      font-size: 20px;
+      margin: 10px 0;
+      text-align: center;
+    }
+
+    .remove-btn {
+      width: 100%;
+      background-color: #2c313c;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 18px;
+    }
+
+    .remove-btn:hover {
+      background-color: #ff3030;
+    }
+
+    /* Responsive breakpoints */
+    @media (max-width: 1024px) {
+      #favorite-products {
+        grid-template-columns: repeat(3,
+            1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      #favorite-products {
+        grid-template-columns: repeat(2,
+            1fr);
+      }
+
+      .product-card {
+        height: auto;
+      }
+    }
+
+    @media (max-width: 480px) {
+      #favorite-products {
+        grid-template-columns: 1fr;
+      }
+
+      .remove-btn {
+        width: 100%;
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+
+<body class="favorite-page">
+  <!-- Navbar Code -->
+  <header>
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark fixed-top">
+      <div class="container-fluid">
+        <!-- Logo and Brand Name -->
+        <a class="navbar-brand d-flex align-items-center" href="#">
+          <img src="./img/grocery.jpg" class="logo" alt="Sanmathi Logo" />
+          <span class="martname">SANMATHI MART</span>
+        </a>
+
+        <!-- Toggler for Mobile View -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Navbar Content -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <div class="d-flex flex-column flex-lg-row w-100 align-items-center">
+            <!-- Menu -->
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <select class="form-select" id="category" onchange="redirectToPage()">
+                  <option value="">Shop by category</option>
+                  <option value="vegetables&fruits.html" class="selecthover">
+                    Vegetables & Fruits
+                  </option>
+                  <option value="snacks-namkeens.html">
+                    Snacks & Namkeens
+                  </option>
+                  <option value="ready-to-cook.html">Ready to Cook</option>
+                  <option value="ready-to-eat.html">Ready to Eat</option>
+                  <option value="baby-care.html">Baby Care</option>
+                  <option value="household-essentials.html">
+                    Household Essentials
+                  </option>
+                  <option value="stationery.html">Stationery</option>
+                  <option value="skin-care.html">Skin Care</option>
+                  <option value="dairyproducts.html">dairy products</option>
+                </select>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white" href="index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white" href="deal.html">Deals</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white" href="Newarrivals.html">New Arrivals</a>
+              </li>
+            </ul>
+
+            <!-- search bar -->
+            <div class="search-bar">
+              <input type="text" class="search-input" placeholder="Search for products..." onkeyup="filterProducts()" />
+              <div class="search-icon">
+                <img src="./img/search.png" alt="Search" />
+              </div>
+            </div>
+
+            <!-- Icons -->
+            <div class="icon-container d-flex align-items-center mt-2 mt-lg-0">
+              <a href="favourite.html" class="cart-icon">
+                <img src="./img/heart.jpg" alt="Favorite Products" />
+                <span class="cart-badge" id="fav-count">0</span>
+              </a>
+              <a href="cart.html" class="cart-icon">
+                <img src="./img/cart.png" alt="Cart" />
+                <span class="cart-badge" id="cart-count">0</span>
+              </a>
+              <div class="d-flex align-items-center">
+                <img src="./img/profile.png" alt="Profile" />
+                <a href="signup.html">
+                  <button class="create-signup-btn">Signup</button>
+                </a>
+              </div>
+
+              <!-- Dark Mode Toggle -->
+              <div class="dark-mode-toggle d-flex align-items-center ms-3">
+                <img src="./img/sun1.png" id="theme-toggle-icon" alt="Toggle Dark Mode" class="toggle-icon"
+                  onclick="toggleDarkMode()" style="cursor: pointer" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <footer class="sticky-footer">
+    <div class="container d-flex justify-content-between align-items-center">
+      <ul class="footer-links d-flex justify-content-between w-100">
+        <li><a href="index.html"><img src="./Home/home_processed.png" alt="Home" /></a></li>
+        <li><a href="vegetables&fruits.html"><img src="./Home/categories_processed.png" alt="Categories" /></a></li>
+        <li><a href="#"><img src="./Home/search_processed.png" alt="search" /></a></li>
+        <li><a href="deal.html"><img src="./Home/dealing_processed.png" alt="Deals" /></a></li>
+        <li><a href="Newarrivals.html"><img src="./Home/new arrival_processed.png" alt="New Arrivals" /></a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <h1>Favorite Products</h1>
+  <div id="favorite-products"></div>
+  <script>
+    // Function to toggle dark mode
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark-mode");
+      if (document.body.classList.contains("dark-mode")) {
+        localStorage.setItem("theme", "dark");
+      } else {
+        localStorage.setItem("theme", "light");
+      }
+    }
+    window.onload = function () {
+      const savedTheme = localStorage.getItem("theme");
+      if (savedTheme === "dark") {
+        document.body.classList.add("dark-mode");
+      } else {
+        document.body.classList.remove("dark-mode");
+      }
+    };
+  </script>
+  <script src="./js/script.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

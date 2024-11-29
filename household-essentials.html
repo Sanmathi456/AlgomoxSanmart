@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Designing the Ultimate Smart Grocery Shopping Experience</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand d-flex align-items-center" href="#">
+          <img src="./img/grocery.jpg" class="logo" alt="Sanmathi Logo" />
+          <span class="martname">SANMART</span>
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <div class="d-flex flex-column flex-lg-row w-100 align-items-center">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <select class="form-select" id="category" onchange="redirectToPage()">
+                  <option value="">Shop by category</option>
+                  <option value="vegetables&fruits.html" class="selecthover">
+                    Vegetables & Fruits
+                  </option>
+                  <option value="snacks-namkeens.html">
+                    Snacks & Namkeens
+                  </option>
+                  <option value="ready-to-cook.html">Ready to Cook</option>
+                  <option value="ready-to-eat.html">Ready to Eat</option>
+                  <option value="baby-care.html">Baby Care</option>
+                  <option value="household-essentials.html">
+                    Household Essentials
+                  </option>
+                  <option value="stationery.html">Stationery</option>
+                  <option value="skin-care.html">Skin Care</option>
+                  <option value="dairyproducts.html">dairy products</option>
+                </select>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white" href="index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white" href="deal.html">Deals</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white" href="Newarrivals.html">New Arrivals</a>
+              </li>
+            </ul>
+
+            <!-- search bar -->
+            <div class="search-bar">
+              <input type="text" class="search-input" placeholder="Search for products..." onkeyup="filterProducts()" />
+              <div class="search-icon">
+                <img src="./img/search.png" alt="Search" />
+              </div>
+            </div>
+
+            <div class="icon-container d-flex align-items-center mt-2 mt-lg-0">
+              <a href="favourite.html" class="cart-icon">
+                <img src="./img/heart.jpg" alt="Favorite Products" />
+                <span class="cart-badge" id="fav-count">0</span>
+              </a>
+              <a href="cart.html" class="cart-icon">
+                <img src="./img/cart.png" alt="Cart" />
+                <span class="cart-badge" id="cart-count">0</span>
+              </a>
+              <div class="d-flex align-items-center">
+                <img src="./img/profile.png" alt="Profile" />
+                <a href="signup.html">
+                  <button class="create-signup-btn">Signup</button>
+                </a>
+              </div>
+              <!-- Dark Mode Toggle (same as before) -->
+              <div class="dark-mode-toggle d-flex align-items-center ms-3">
+                <img src="./img/sun.png" id="theme-toggle-icon" alt="Toggle Dark Mode" class="toggle-icon"
+                  onclick="toggleDarkMode()" style="cursor: pointer" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Product Display Section (for Vegetables & Fruits) -->
+  <section class="container mt-5 pt-5">
+    <h2 class="text-center vegfrucol mb-4">House Hold Essentials</h2>
+    <div class="filter_buttons">
+      <button class="active" data-name="all">All</button>
+      <button data-name="fresheners">Fresheners</button>
+      <button data-name="pooja needs">Pooja Needs</button>
+      <button data-name="others">Others</button>
+    </div>
+
+    <!-- Dropdown for mobile view -->
+    <select class="filter_dropdown" aria-label="Filter Products">
+      <option value="all">All</option>
+      <option value="fresheners">Fresheners</option>
+      <option value="pooja needs">pooja Needs</option>
+      <option value="others">Others</option>
+    </select>
+    <div class="row">
+      <!-- Product Cards (example of 20 items) -->
+      <div class="row filterable_cards" id="products">
+        <div class="col-md-3" data-name="fresheners">
+          <div class="product-card">
+            <a href="householdessentialdetail.html" class="product-link">
+              <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" onclick="toggleFavorite(0)" />
+              <img src="./household essentials/All Out Altra Power.jpg" class="product-image" alt="Apple" />
+              <div class="product-name">All Out Altra Power</div>
+              <div class="product-price">$26.99</div>
+            </a>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+        </div>
+        <div class="col-md-3" data-name="others">
+          <div class="product-card">
+            <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+            <img src="./household essentials/Dust pan small.png" class="product-image" alt="Banana" />
+            <div class="product-name">Dust Pan Small</div>
+            <div class="product-price">$10.99</div>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+        </div>
+        <div class="col-md-3" data-name="others">
+          <div class="product-card">
+            <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+            <img src="./household essentials/Gloves.png" class="product-image" alt="Carrot" />
+            <div class="product-name">Gloves</div>
+            <div class="product-price">$21.50</div>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+        </div>
+        <div class="col-md-3" data-name="fresheners">
+          <div class="product-card">
+            <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+            <img src="./household essentials/Hit Dengue & Malaria.jpg" class="product-image" alt="Broccoli" />
+            <div class="product-name">Hit Dengue & malaria</div>
+            <div class="product-price">$20.00</div>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+        </div>
+
+        <div class="col-md-3" data-name="fresheners">
+          <div class="product-card">
+            <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+            <img src="./household essentials/Odonil Room Freshener.jpg" class="product-image" alt="Tomato" />
+            <div class="product-name">Odonil Room Freshener</div>
+            <div class="product-price">$29.20</div>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+        </div>
+
+        <div class="col-md-3" data-name="fresheners">
+          <div class="product-card">
+            <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+            <img src="./household essentials/odonil Air fresher.jpg" class="product-image" alt="Potato" />
+            <div class="product-name">Odonil Air Fresher</div>
+            <div class="product-price">$20.80</div>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+        </div>
+
+        <div class="col-md-3" data-name="others">
+          <div class="product-card">
+            <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+            <img src="./household essentials/Plastic Tea Strainer.png" class="product-image" alt="Spinach" />
+            <div class="product-name">Plastic Tea Strainer</div>
+            <div class="product-price">$19.60</div>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+        </div>
+
+        <div class="col-md-3" data-name="others">
+          <div class="product-card">
+            <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+            <img src="../" class="product-image" alt="Cucumber" />
+            <div class="product-name">Scrub</div>
+            <div class="product-price">$4.75</div>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+        </div>
+
+        <div class="col-md-3" data-name="others">
+          <div class="product-card">
+            <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+            <img src="./household essentials/steel cooking small oil brush.png" class="product-image" alt="Orange" />
+            <div class="product-name">Steel Cooking small oil brush</div>
+            <div class="product-price">$1.30</div>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+        </div>
+
+        <div class="col-md-3" data-name="fresheners">
+          <div class="product-card">
+            <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+            <img src="./household essentials/Aer Power Pocket.jpg" class="product-image" alt="Orange" />
+            <div class="product-name">aer Powerpocket</div>
+            <div class="product-price">$10.30</div>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="product-card">
+            <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+            <img src="./household essentials/Cycle Lia.jpg" class="product-image" alt="Orange" />
+            <div class="product-name">Cycle Lia</div>
+            <div class="product-price">$10.30</div>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+        </div>
+
+        <div class="col-md-3" data-name="pooja needs">
+          <div class="product-card">
+            <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+            <img src="./household essentials/Cycle Pure 3 in 1.jpg" class="product-image" alt="Orange" />
+            <div class="product-name">Cycle Pure 3 in 1</div>
+            <div class="product-price">$11.30</div>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+        </div>
+
+        <div class="col-md-3" data-name="fresheners">
+          <div class="product-card">
+            <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+            <img src="./household essentials/Dazller Deo'n fresh.jpg" class="product-image" alt="Orange" />
+            <div class="product-name">Dazller Deo'n fresh</div>
+            <div class="product-price">$21.30</div>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+        </div>
+
+        <div class="col-md-3" data-name="pets needs">
+          <div class="product-card">
+            <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+            <img src="./household essentials/Drools Absolute Calcium Milkbone.jpg" class="product-image" alt="Orange" />
+            <div class="product-name">Dog Calcium Milkbone</div>
+            <div class="product-price">$21.30</div>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+        </div>
+
+        <div class="col-md-3" data-name="pets needs">
+          <div class="product-card">
+            <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+            <img src="./household essentials/Egg Puppy Dog Food.jpg" class="product-image" alt="Orange" />
+            <div class="product-name">Egg puppy Dogfood</div>
+            <div class="product-price">$30.30</div>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+        </div>
+
+        <div class="col-md-3" data-name="fresheners">
+          <div class="product-card">
+            <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+            <img src="./household essentials/Good Night Goldflash.jpg" class="product-image" alt="Orange" />
+            <div class="product-name">Goodknight Goldflash</div>
+            <div class="product-price">$29.30</div>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+        </div>
+
+        <div class="col-md-3" data-name="fresheners">
+          <div class="product-card">
+            <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+            <img src="./household essentials/GoodKnight PowerActive+.jpg" class="product-image" alt="Orange" />
+            <div class="product-name">Goodknight PowerActive +</div>
+            <div class="product-price">$1.30</div>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+        </div>
+
+        <div class="col-md-3" data-name="fresheners">
+          <div class="product-card">
+            <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+            <img src="./household essentials/harppic.jpg" class="product-image" alt="Orange" />
+            <div class="product-name">Harppic</div>
+            <div class="product-price">$40.30</div>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+        </div>
+
+        <div class="col-md-3" data-name="others">
+          <div class="product-card">
+            <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+            <img src="./household essentials/Kiwi Instant Polish.jpg" class="product-image" alt="Orange" />
+            <div class="product-name">Kiwi Instant Polish</div>
+            <div class="product-price">$40.30</div>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+        </div>
+
+        <div class="col-md-3" data-name="others">
+          <div class="product-card">
+            <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+            <img src="./household essentials/Kiwi Shoe Polish bblack.jpg" class="product-image" alt="Orange" />
+            <div class="product-name">Kiwi Shoe polish black</div>
+            <div class="product-price">$28.30</div>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+        </div>
+        <div class="col-md-3" data-name="fresheners">
+          <div class="product-card">
+            <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+            <img src="./household essentials/odonil Air fresher.jpg" class="product-image" alt="Orange" />
+            <div class="product-name">Odonil Air Fresher</div>
+            <div class="product-price">$19.30</div>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+        </div>
+
+        <div class="col-md-3" data-name="others">
+          <div class="product-card">
+            <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+            <img src="./household essentials/Solo Fresh nap white.png" class="product-image" alt="Orange" />
+            <div class="product-name">Solo Fresh nap White</div>
+            <div class="product-price">$24.30</div>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+        </div>
+
+        <div class="col-md-3" data-name="others">
+          <div class="product-card">
+            <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+            <img src="./household essentials/steel cooking small oil brush.png" class="product-image" alt="Orange" />
+            <div class="product-name">Steelcooking small oil brush</div>
+            <div class="product-price">$10.30</div>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+        </div>
+
+        <div class="col-md-3" data-name="pooja needs">
+          <div class="product-card">
+            <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+            <img src="./household essentials/TPRG Sambirani.jpg" class="product-image" alt="Orange" />
+            <div class="product-name">TPRG Sambirani</div>
+            <div class="product-price">$9.30</div>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="sticky-footer">
+    <div class="container d-flex justify-content-between align-items-center">
+      <ul class="footer-links d-flex justify-content-between w-100">
+        <li><a href="index.html"><img src="./Home/home_processed.png" alt="Home" /></a></li>
+        <li><a href="vegetables&fruits.html"><img src="./Home/categories_processed.png" alt="Categories" /></a></li>
+        <li><a href="#"><img src="./Home/search_processed.png" alt="search" /></a></li>
+        <li><a href="deal.html"><img src="./Home/dealing_processed.png" alt="Deals" /></a></li>
+        <li><a href="Newarrivals.html"><img src="./Home/new arrival_processed.png" alt="New Arrivals" /></a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const buttons = document.querySelectorAll(".filter_buttons button");
+      const dropdown = document.querySelector(".filter_dropdown");
+      const productCards = document.querySelectorAll(".col-md-3");
+
+      // Function to filter products
+      function filterProducts(category) {
+        productCards.forEach((card) => {
+          const productCategory = card.getAttribute("data-name");
+          card.style.display =
+            category === "all" || productCategory === category
+              ? "block"
+              : "none";
+        });
+      }
+
+      // Add click event for buttons
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          buttons.forEach((b) => b.classList.remove("active"));
+          button.classList.add("active");
+          const category = button.getAttribute("data-name");
+          filterProducts(category);
+        });
+      });
+
+      // Add change event for dropdown
+      dropdown.addEventListener("change", () => {
+        const category = dropdown.value;
+        filterProducts(category);
+      });
+
+      // Initial load: Show all products
+      filterProducts("all");
+    });
+  </script>
+
+  <script src="./js/script.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

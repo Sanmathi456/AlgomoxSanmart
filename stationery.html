@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Designing the Ultimate Smart Grocery Shopping Experience</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  
+  
+</head>
+
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand d-flex align-items-center" href="#">
+          <img src="./img/grocery.jpg" class="logo" alt="Sanmathi Logo" />
+          <span class="martname">SANMART</span>
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <div class="d-flex flex-column flex-lg-row w-100 align-items-center">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <select class="form-select" id="category" onchange="redirectToPage()">
+                  <option value="">Shop by category</option>
+                  <option value="vegetables&fruits.html" class="selecthover">
+                    Vegetables & Fruits
+                  </option>
+                  <option value="snacks-namkeens.html">
+                    Snacks & Namkeens
+                  </option>
+                  <option value="ready-to-cook.html">Ready to Cook</option>
+                  <option value="ready-to-eat.html">Ready to Eat</option>
+                  <option value="baby-care.html">Baby Care</option>
+                  <option value="household-essentials.html">
+                    Household Essentials
+                  </option>
+                  <option value="stationery.html">Stationery</option>
+                  <option value="skin-care.html">Skin Care</option>
+                  <option value="dairyproducts.html">dairy products</option>
+                </select>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white" href="index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white" href="deal.html">Deals</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white" href="Newarrivals.html">New Arrivals</a>
+              </li>
+            </ul>
+            <!-- search bar -->
+            <div class="search-bar">
+              <input type="text" class="search-input" placeholder="Search for products..." onkeyup="filterProducts()" />
+              <div class="search-icon">
+                <img src="./img/search.png" alt="Search" />
+              </div>
+            </div>
+            <div class="icon-container d-flex align-items-center mt-2 mt-lg-0">
+              <a href="favourite.html" class="cart-icon">
+                <img src="./img/heart.jpg" alt="Favorite Products" />
+                <span class="cart-badge" id="fav-count">0</span>
+              </a>
+              <a href="cart.html" class="cart-icon">
+                <img src="./img/cart.png" alt="Cart" />
+                <span class="cart-badge" id="cart-count">0</span>
+              </a>
+              <div class="d-flex align-items-center">
+                <img src="./img/profile.png" alt="Profile" />
+                <a href="signup.html">
+                  <button class="create-signup-btn">Signup</button>
+                </a>
+              </div>
+
+              <!-- Dark Mode Toggle (same as before) -->
+              <div class="dark-mode-toggle d-flex align-items-center ms-3">
+                <img src="./img/sun.png" id="theme-toggle-icon" alt="Toggle Dark Mode" class="toggle-icon"
+                  onclick="toggleDarkMode()" style="cursor: pointer" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <section class="container mt-5 pt-5">
+    <h2 class="text-center vegfrucol mb-4">Stationeries</h2>
+    <div class="filter_buttons">
+      <button class="active" data-name="all">All</button>
+      <button data-name="notebook">Notebooks</button>
+      <button data-name="pen">Pens</button>
+      <button data-name="Gums">Gums</button>
+      <button data-name="Eraser">Erasers</button>
+      <button data-name="Files">Files</button>
+      <button data-name="Others">Others</button>
+    </div>
+
+    <!-- Dropdown for mobile view -->
+    <select class="filter_dropdown" aria-label="Filter Products">
+      <option value="all">All</option>
+      <option value="notebook">Notebook</option>
+      <option value="pen">Pen</option>
+      <option value="Gums">Gums</option>
+      <option value="Eraser">Eraser</option>
+      <option value="Files">Files</option>
+      <option value="Others">Others</option>
+    </select>
+
+    <section class="container mt-5 pt-5">
+      
+      <div class="row filterable_cards" id="products">
+        <div class="row">
+          <div class="col-md-3 card"  id="apsara" data-name="pencil">
+            <div class="product-card">
+              <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" onclick="toggleFavorite(0)" />
+              <a href="stationaarydetails.html" class="product-link">
+              <img src="./stationaryimg/Apsara Extra Dark.jpg" class="product-image" alt="Apple" />
+              <div class="product-name">Apsara Extra Dark</div>
+              <div class="product-price">$6.99</div>
+              </a>
+              <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+          </div>
+          <div class="col-md-3 card" id="classmate" data-name="notebook">
+            <div class="product-card">
+              <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+              <img src="./stationaryimg/classmate notebook.jpg" class="product-image" alt="Carrot" />
+              <div class="product-name">Classmate Notebook</div>
+              <div class="product-price">$10.50</div>
+              <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+          </div>
+          <div class="col-md-3 card" id="doms" data-name="Others">
+            <div class="product-card">
+              <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+              <img src="./stationaryimg/DOMS sketch.jpg" class="product-image" alt="Broccoli" />
+              <div class="product-name">DOMS Sketch</div>
+              <div class="product-price">$12.00</div>
+              <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+          </div>
+
+          <div class="col-md-3 card" id="Gum" data-name="Gums">
+            <div class="product-card">
+              <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+              <img src="./stationaryimg/fevi stick.jpg" class="product-image" alt="Tomato" />
+              <div class="product-name">Fevi Stick</div>
+              <div class="product-price">$11.20</div>
+              <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+          </div>
+
+          <div class="col-md-3 card" id="fevi" data-name="Gums">
+            <div class="product-card">
+              <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+              <img src="./stationaryimg/fevicol.jpg" class="product-image" alt="Potato" />
+              <div class="product-name">Fevicol</div>
+              <div class="product-price">$5.80</div>
+              <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+          </div>
+
+          <div class="col-md-3 card" id="Glue" data-name="Gums">
+            <div class="product-card">
+              <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+              <img src="./stationaryimg/fevigum Glue.jpg" class="product-image" alt="Spinach" />
+              <div class="product-name">Fevigum Glue</div>
+              <div class="product-price">$7.60</div>
+              <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+          </div>
+          <div class="col-md-3 card" id="aperaser " data-name="Eraser">
+            <div class="product-card">
+              <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+              <img src="./stationaryimg/Apsara eraser.jpg" class="product-image" alt="Potato" />
+              <div class="product-name">Apsara Eraser</div>
+              <div class="product-price">$5.80</div>
+              <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+          </div>
+          <div class="col-md-3 card" id="ballpoint" data-name="pen">
+            <div class="product-card">
+              <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+              <img src="./stationaryimg/Ballpoint pen.jpg" class="product-image" alt="Potato" />
+              <div class="product-name">Ballpoint Pen</div>
+              <div class="product-price">$10.80</div>
+              <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+          </div>
+          <div class="col-md-3 card" id="buttonfile" data-name="Files">
+            <div class="product-card">
+              <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+              <img src="./stationaryimg/Button File folder.jpg" class="product-image" alt="Potato" />
+              <div class="product-name">Button File Folder</div>
+              <div class="product-price">$15.80</div>
+              <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+          </div>
+          <div class="col-md-3 card" id="cellopen" data-name="pen">
+            <div class="product-card">
+              <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+              <img src="./stationaryimg/Cello papersoft pen.jpg" class="product-image" alt="Potato" />
+              <div class="product-name">Cello Paper Soft Pen</div>
+              <div class="product-price">$25.80</div>
+              <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+          </div>
+          <div class="col-md-3 card" id="envelope" data-name="Files">
+            <div class="product-card">
+              <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+              <img src="./stationaryimg/envelope.jpg" class="product-image" alt="Potato" />
+              <div class="product-name">Envelope</div>
+              <div class="product-price">$5.60</div>
+              <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+          </div>
+          <div class="col-md-3 card" id="file" data-name="Files">
+            <div class="product-card">
+              <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+              <img src="./stationaryimg/File.jpg" class="product-image" alt="Potato" />
+              <div class="product-name">File</div>
+              <div class="product-price">$10.80</div>
+              <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+          </div>
+          <div class="col-md-3 card" id="Fountain" data-name="pen">
+            <div class="product-card">
+              <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+              <img src="./stationaryimg/Fountain pen.jpg" class="product-image" alt="Potato" />
+              <div class="product-name">Fountain Pne</div>
+              <div class="product-price">$35.80</div>
+              <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+          </div>
+          <div class="col-md-3 card" id="fourruled" data-name="notebook">
+            <div class="product-card">
+              <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+              <img src="./stationaryimg/four ruled note.jpg" class="product-image" alt="Potato" />
+              <div class="product-name">Fourruled Note</div>
+              <div class="product-price">$15.80</div>
+              <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+          </div>
+          <div class="col-md-3 card" id="heropen" data-name="pen">
+            <div class="product-card">
+              <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+              <img src="./stationaryimg/hero pen.jpg" class="product-image" alt="Potato" />
+              <div class="product-name">Hero Pen</div>
+              <div class="product-price">$50.90</div>
+              <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+          </div>
+          <div class="col-md-3 card" id="ink" data-name="pen">
+            <div class="product-card">
+              <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+              <img src="./stationaryimg/Ink pen.jpg" class="product-image" alt="Potato" />
+              <div class="product-name">Ink Pen</div>
+              <div class="product-price">$45.60</div>
+              <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+          </div>
+          <div class="col-md-3 card" id="longnote" data-name="notebook">
+            <div class="product-card">
+              <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+              <img src="./stationaryimg/longsize note.jpg" class="product-image" alt="Potato" />
+              <div class="product-name">LongSize Note</div>
+              <div class="product-price">$12.70</div>
+              <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+          </div>
+          <div class="col-md-3 card" id="marker" data-name="Others">
+            <div class="product-card">
+              <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+              <img src="./stationaryimg/marker.jpg" class="product-image" alt="Potato" />
+              <div class="product-name">Marker</div>
+              <div class="product-price">$9.80</div>
+              <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+          </div>
+          <div class="col-md-3 card" id="mongol" data-name="Others">
+            <div class="product-card">
+              <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+              <img src="./stationaryimg/mongal.jpg" class="product-image" alt="Potato" />
+              <div class="product-name">Mongol</div>
+              <div class="product-price">$12.80</div>
+              <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+          </div>
+          <div class="col-md-3 card" id="nataraj" data-name="pencil">
+            <div class="product-card">
+              <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+              <img src="./stationaryimg/nataraj.jpg" class="product-image" alt="Potato" />
+              <div class="product-name">Nataraj</div>
+              <div class="product-price">$4.80</div>
+              <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+          </div>
+          <div class="col-md-3 card" id="office" data-name="Files">
+            <div class="product-card">
+              <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+              <img src="./stationaryimg/Office folder.jpg" class="product-image" alt="Potato" />
+              <div class="product-name">Office Folder</div>
+              <div class="product-price">$50.40</div>
+              <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+          </div>
+          <div class="col-md-3 card" id="papermate" data-name="Eraser">
+            <div class="product-card">
+              <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+              <img src="./stationaryimg/paper mate eraser.jpg" class="product-image" alt="Potato" />
+              <div class="product-name">Papermate Eraser</div>
+              <div class="product-price">$3.80</div>
+              <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+          </div>
+          <div class="col-md-3 card" id="permanentmarker" data-name="Others">
+            <div class="product-card">
+              <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+              <img src="./stationaryimg/permanenet marker.png" class="product-image" alt="Potato" />
+              <div class="product-name">Permanent Marker</div>
+              <div class="product-price">$20.80</div>
+              <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+          </div>
+          <div class="col-md-3 card" id="plasticfiles" data-name="Files">
+            <div class="product-card">
+              <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+              <img src="./stationaryimg/plain plastic file.jpg" class="product-image" alt="Potato" />
+              <div class="product-name">Plain Plastic File</div>
+              <div class="product-price">$5.80</div>
+              <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+          </div>
+          <div class="col-md-3 card" id="recordfile" data-name="">
+            <div class="product-card">
+              <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+              <img src="./stationaryimg/Record File.jpg" Files class="product-image" alt="Potato" />
+              <div class="product-name">Record File</div>
+              <div class="product-price">$13.60</div>
+              <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+          </div>
+          <div class="col-md-3 card" id="scale" data-name="Others">
+            <div class="product-card">
+              <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+              <img src="./stationaryimg/scale.png" class="product-image" alt="Potato" />
+              <div class="product-name">Scale</div>
+              <div class="product-price">$8.80</div>
+              <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+          </div>
+          <div class="col-md-3 card" id="scissors" data-name="Others">
+            <div class="product-card">
+              <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+              <img src="./stationaryimg/scissors.jpg" class="product-image" alt="Potato" />
+              <div class="product-name">Scissors</div>
+              <div class="product-price">$20.30</div>
+              <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+          </div>
+          <div class="col-md-3 card" id="shortnote" data-name="notebook">
+            <div class="product-card">
+              <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+              <img src="./stationaryimg/short size note.jpg" class="product-image" alt="Potato" />
+              <div class="product-name">Short Size Note</div>
+              <div class="product-price">$20.80</div>
+              <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+          </div>
+          <div class="col-md-3 card" id="spiral" data-name="Files">
+            <div class="product-card">
+              <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+              <img src="./stationaryimg/spiral.jpg" class="product-image" alt="Potato" />
+              <div class="product-name">Spiral</div>
+              <div class="product-price">$28.80</div>
+              <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+          </div>
+          <div class="col-md-3 card " id="stapler" data-name="Others">
+            <div class="product-card">
+              <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+              <img src="./stationaryimg/stapler.jpg" class="product-image" alt="Potato" />
+              <div class="product-name">Stapler</div>
+              <div class="product-price">$12.30</div>
+              <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+          </div>
+          <div class="col-md-3" id="staples" data-name="Others">
+            <div class="product-card">
+              <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+              <img src="./stationaryimg/staples.jpg" class="product-image" alt="Potato" />
+              <div class="product-name">Staples</div>
+              <div class="product-price">$17.80</div>
+              <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+          </div>
+          <div class="col-md-3" id="sticky" data-name="Others">
+            <div class="product-card">
+              <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+              <img src="./stationaryimg/sticky notes.jpg" class="product-image" alt="Potato" />
+              <div class="product-name">Sticky Notes</div>
+              <div class="product-price">$5.40</div>
+              <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+          </div>
+          <div class="col-md-3" id="supremexl" data-name="Others">
+            <div class="product-card">
+              <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+              <img src="./stationaryimg/supreme Xl.jpg" class="product-image" alt="Potato" />
+              <div class="product-name">Supreme Xl</div>
+              <div class="product-price">$5.80</div>
+              <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+          </div>
+          <div class="col-md-3" id="tworuled" data-name="notebook">
+            <div class="product-card">
+              <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+              <img src="./stationaryimg/two ruled note.jpg" class="product-image" alt="Potato" />
+              <div class="product-name">Tworuled Note</div>
+              <div class="product-price">$5.80</div>
+              <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+          </div>
+          <div class="col-md-3" id="woodenscale" data-name="others">
+            <div class="product-card">
+              <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+              <img src="./stationaryimg/wooden scale.jpg" class="product-image" alt="Potato" />
+              <div class="product-name">Wooden Scale</div>
+              <div class="product-price">$15.80</div>
+              <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer class="sticky-footer">
+      <div class="container d-flex justify-content-between align-items-center">
+        <ul class="footer-links d-flex justify-content-between w-100">
+          <li><a href="index.html"><img src="./Home/home_processed.png" alt="Home" /></a></li>
+          <li><a href="vegetables&fruits.html"><img src="./Home/categories_processed.png" alt="Categories" /></a></li>
+          <li><a href="#"><img src="./Home/search_processed.png" alt="search" /></a></li>
+          <li><a href="deal.html"><img src="./Home/dealing_processed.png" alt="Deals" /></a></li>
+          <li><a href="Newarrivals.html"><img src="./Home/new arrival_processed.png" alt="New Arrivals" /></a></li>
+        </ul>
+      </div>
+    </footer>  
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const buttons = document.querySelectorAll(".filter_buttons button");
+        const dropdown = document.querySelector(".filter_dropdown");
+        const productCards = document.querySelectorAll(".col-md-3");
+
+        // Function to filter products
+        function filterProducts(category) {
+          productCards.forEach((card) => {
+            const productCategory = card.getAttribute("data-name");
+            card.style.display =
+              category === "all" || productCategory === category ? "block" : "none";
+          });
+        }
+
+        // Add click event for buttons
+        buttons.forEach((button) => {
+          button.addEventListener("click", () => {
+            buttons.forEach((b) => b.classList.remove("active"));
+            button.classList.add("active");
+            const category = button.getAttribute("data-name");
+            filterProducts(category);
+          });
+        });
+
+        // Add change event for dropdown
+        dropdown.addEventListener("change", () => {
+          const category = dropdown.value;
+          filterProducts(category);
+        });
+        filterProducts("all");
+      });
+
+    </script>
+    <script src="./js/script.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

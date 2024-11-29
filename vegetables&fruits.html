@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Designing the Ultimate Smart Grocery Shopping Experience</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    #productRow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    @media (max-width: 1200px) {
+      .product-card {
+        width: 45%;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .product-card {
+        width: 100%;
+        margin: 10px 0;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .product-name {
+        font-size: 16px;
+      }
+
+      .product-price {
+        font-size: 16px;
+      }
+
+      .add-to-cart-btn {
+        padding: 6px 12px;
+      }
+    }
+
+    /* filter buttons */
+    .filter_buttons {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      padding: 20px;
+    }
+
+    .filter_buttons button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      background-color: rgb(164, 124, 71);
+      border-radius: 5px;
+    }
+
+    .filter_buttons button.active {
+      background-color: rgb(82, 79, 79);
+      color: white;
+    }
+
+    @media (max-width: 768px) {
+      .filter_buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .filter_buttons button {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+    }
+
+    .product-link {
+      text-decoration: none;
+      display: block;
+      border-radius: 8px;
+      text-align: center;
+      transition: box-shadow 0.3s ease, transform 0.3s ease;
+    }
+
+    .product-link:hover {
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transform: translateY(-5px);
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand d-flex align-items-center" href="#">
+          <img src="./img/grocery.jpg" class="logo" alt="Sanmathi Logo" />
+          <span class="martname">SANMART</span>
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <div class="d-flex flex-column flex-lg-row w-100 align-items-center">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <select class="form-select" id="category" onchange="redirectToPage()">
+                  <option value="">Shop by category</option>
+                  <option value="vegetables&fruits.html" class="selecthover">
+                    Vegetables & Fruits
+                  </option>
+                  <option value="snacks-namkeens.html">
+                    Snacks & Namkeens
+                  </option>
+                  <option value="ready-to-cook.html">Ready to Cook</option>
+                  <option value="ready-to-eat.html">Ready to Eat</option>
+                  <option value="baby-care.html">Baby Care</option>
+                  <option value="household-essentials.html">
+                    Household Essentials
+                  </option>
+                  <option value="stationery.html">Stationery</option>
+                  <option value="skin-care.html">Skin Care</option>
+                  <option value="dairyproducts.html">dairy products</option>
+                </select>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white" href="index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white" href="deal.html">Deals</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white" href="Newarrivals.html">New Arrivals</a>
+              </li>
+            </ul>
+
+            <!-- Search Bar -->
+            <div class="search-bar">
+              <input type="text" class="search-input" placeholder="Search for products..." onkeyup="filterProducts()" />
+              <div class="search-icon">
+                <img src="./img/search.png" alt="Search" />
+              </div>
+            </div>
+
+            <div class="icon-container d-flex align-items-center mt-2 mt-lg-0">
+              <a href="favourite.html" class="cart-icon">
+                <img src="./img/heart.jpg" alt="Favorite Products" />
+                <span class="cart-badge" id="fav-count">0</span>
+              </a>
+              <a href="cart.html" class="cart-icon">
+                <img src="./img/cart.png" alt="Cart" />
+                <span class="cart-badge" id="cart-count">0</span>
+              </a>
+              <div class="d-flex align-items-center">
+                <img src="./img/profile.png" alt="Profile" />
+                <a href="signup.html">
+                  <button class="create-signup-btn">Signup</button>
+                </a>
+              </div>
+
+              <!-- Dark Mode Toggle (same as before) -->
+              <div class="dark-mode-toggle d-flex align-items-center ms-3">
+                <img src="./img/sun1.png" id="theme-toggle-icon" alt="Toggle Dark Mode" class="toggle-icon"
+                  onclick="toggleDarkMode()" style="cursor: pointer" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <section class="container mt-5 pt-5">
+    <h2 class="text-center vegfrucol mb-4">Vegetables & Fruits</h2>
+    <div class="filter_buttons">
+      <button class="active" data-name="all">All</button>
+      <button data-name="fruits">Fruits</button>
+      <button data-name="vegetables">Vegetables</button>
+    </div>
+
+    <div class="row filterable_cards" id="products">
+      <!-- Product Cards (example of 20 items) -->
+      <div class="col-md-3" id="apple" data-name="fruits">
+        <div class="product-card">
+          <a href="product-details.html" class="product-link">
+            <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" onclick="toggleFavorite(0)" />
+            <img src="./img/apple.jpg" class="product-image" alt="Apple" />
+            <div class="product-name">Apple</div>
+            <div class="product-price">$40.99</div>
+          </a>
+          <button class="add-to-cart-btn">Add to Cart</button>
+        </div>
+      </div>
+      <div class="col-md-3" id="banana" data-name="fruits">
+        <div class="product-card">
+          <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+          <img src="./img/banana.jpg" class="product-image" alt="Banana" />
+          <div class="product-name">Banana</div>
+          <div class="product-price">$30.99</div>
+          <button class="add-to-cart-btn">Add to Cart</button>
+        </div>
+      </div>
+      <div class="col-md-3" id="carrot" data-name="vegetables">
+        <div class="product-card">
+          <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+          <img src="./img/carrot.jpg" class="product-image" alt="Carrot" />
+          <div class="product-name">Carrot</div>
+          <div class="product-price">$31.50</div>
+          <button class="add-to-cart-btn">Add to Cart</button>
+        </div>
+      </div>
+      <div class="col-md-3" id="broccoli" data-name="vegetables">
+        <div class="product-card">
+          <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+          <img src="./img/broccoli.jpg" class="product-image" alt="Broccoli" />
+          <div class="product-name">Broccoli</div>
+          <div class="product-price">$28.00</div>
+          <button class="add-to-cart-btn">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="col-md-3" id="tomato" data-name="fruits">
+        <div class="product-card">
+          <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+          <img src="./img/tomato.jpg" class="product-image" alt="Tomato" />
+          <div class="product-name">Tomato</div>
+          <div class="product-price">$61.20</div>
+          <button class="add-to-cart-btn">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="col-md-3" id="potato" data-name="vegetables">
+        <div class="product-card">
+          <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+          <img src="./img/potato.jpg" class="product-image" alt="Potato" />
+          <div class="product-name">Potato</div>
+          <div class="product-price">$40.80</div>
+          <button class="add-to-cart-btn">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="col-md-3" id="grapes" data-name="fruits">
+        <div class="product-card">
+          <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+          <img src="./img/grapes.jpg" class="product-image" alt="Grapes" />
+          <div class="product-name">Grapes</div>
+          <div class="product-price">$51.60</div>
+          <button class="add-to-cart-btn">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="col-md-3" id="cucumber" data-name="vegetables">
+        <div class="product-card">
+          <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+          <img src="./img/cucumber.jpg" class="product-image" alt="Cucumber" />
+          <div class="product-name">Cucumber</div>
+          <div class="product-price">$12.75</div>
+          <button class="add-to-cart-btn">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="col-md-3" id="orange" data-name="fruits">
+        <div class="product-card">
+          <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+          <img src="./img/orange.jpg" class="product-image" alt="Orange" />
+          <div class="product-name">Orange</div>
+          <div class="product-price">$15.30</div>
+          <button class="add-to-cart-btn">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="col-md-3" id="pineapple" data-name="fruits">
+        <div class="product-card">
+          <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+          <img src="./img/pine apple.jpg" class="product-image" alt="Pineapple" />
+          <div class="product-name">Pineapple</div>
+          <div class="product-price">$25.50</div>
+          <button class="add-to-cart-btn">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="col-md-3" id="peach" data-name="fruits">
+        <div class="product-card">
+          <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+          <img src="./img/peach.jpg" class="product-image" alt="Peach" />
+          <div class="product-name">Peach</div>
+          <div class="product-price">$29.00</div>
+          <button class="add-to-cart-btn">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="col-md-3" id="lemon" data-name="fruits">
+        <div class="product-card">
+          <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+          <img src="./img/lemon.jpg" class="product-image" alt="Lemon" />
+          <div class="product-name">Lemon</div>
+          <div class="product-price">$45.10</div>
+          <button class="add-to-cart-btn">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="col-md-3" id="bell-pepper" data-name="vegetables">
+        <div class="product-card">
+          <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+          <img src="./img/bell-pepper.jpg" class="product-image" alt="Bell Pepper" />
+          <div class="product-name">Bell Pepper</div>
+          <div class="product-price">$16.80</div>
+          <button class="add-to-cart-btn">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="col-md-3" id="ladies-finger" data-name="vegetables">
+        <div class="product-card">
+          <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+          <img src="./img/ladies finger.jpg" class="product-image" alt="Ladies Finger" />
+          <div class="product-name">Ladies Finger</div>
+          <div class="product-price">$18.40</div>
+          <button class="add-to-cart-btn">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="col-md-3" id="melon" data-name="fruits">
+        <div class="product-card">
+          <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+          <img src="./img/melon.jpg" class="product-image" alt="Melon" />
+          <div class="product-name">Melon</div>
+          <div class="product-price">$32.00</div>
+          <button class="add-to-cart-btn">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="col-md-3" id="avocado" data-name="fruits">
+        <div class="product-card">
+          <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+          <img src="./img/avacado.jpg" class="product-image" alt="Avocado" />
+          <div class="product-name">Avocado</div>
+          <div class="product-price">$55.00</div>
+          <button class="add-to-cart-btn">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="sticky-footer">
+    <div class="container d-flex justify-content-between align-items-center">
+      <ul class="footer-links d-flex justify-content-between w-100">
+        <li>
+          <a href="index.html"><img src="./Home/home_processed.png" alt="Home" /></a>
+        </li>
+        <li>
+          <a href="vegetables&fruits.html"><img src="./Home/categories_processed.png" alt="Categories" /></a>
+        </li>
+        <li>
+        <li><a href="cart.html"><img src="./img/cart.png" alt="search" /></a></li>
+        </li>
+        <li>
+          <a href="deal.html"><img src="./Home/dealing_processed.png" alt="Deals" /></a>
+        </li>
+        <li>
+          <a href="Newarrivals.html"><img src="./Home/new arrival_processed.png" alt="New Arrivals" /></a>
+        </li>
+      </ul>
+    </div>
+  </footer>
+  <script>
+    // JavaScript for filtering products
+    document.addEventListener("DOMContentLoaded", function () {
+      const buttons = document.querySelectorAll(".filter_buttons button");
+      const productCards = document.querySelectorAll(
+        ".filterable_cards .col-md-3"
+      );
+      // Function to filter cards based on category
+      function filterProducts(category) {
+        productCards.forEach((card) => {
+          const productCategory = card.getAttribute("data-name");
+
+          if (category === "all" || productCategory === category) {
+            card.style.display = "block";
+          } else {
+            card.style.display = "none";
+          }
+        });
+      }
+
+      // Event listeners for filter buttons
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          buttons.forEach((b) => b.classList.remove("active"));
+          button.classList.add("active");
+
+          const category = button.getAttribute("data-name");
+          filterProducts(category);
+        });
+      });
+      filterProducts("all");
+    });
+  </script>
+
+  <script src="./js/script.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

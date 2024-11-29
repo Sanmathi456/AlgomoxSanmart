@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Designing the Ultimate Smart Grocery Shopping Experience</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand d-flex align-items-center" href="#">
+          <img src="./img/grocery.jpg" class="logo" alt="Sanmathi Logo" />
+          <span class="martname">SANMART</span>
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <div class="d-flex flex-column flex-lg-row w-100 align-items-center">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <select class="form-select" id="category" onchange="redirectToPage()">
+                  <option value="">Shop by category</option>
+                  <option value="vegetables&fruits.html" class="selecthover">
+                    Vegetables & Fruits
+                  </option>
+                  <option value="snacks-namkeens.html">
+                    Snacks & Namkeens
+                  </option>
+                  <option value="ready-to-cook.html">Ready to Cook</option>
+                  <option value="ready-to-eat.html">Ready to Eat</option>
+                  <option value="baby-care.html">Baby Care</option>
+                  <option value="household-essentials.html">
+                    Household Essentials
+                  </option>
+                  <option value="stationery.html">Stationery</option>
+                  <option value="skin-care.html">Skin Care</option>
+                  <option value="dairyproducts.html">dairy products</option>
+                </select>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white" href="index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white" href="deal.html">Deals</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white" href="Newarrivals.html">New Arrivals</a>
+              </li>
+            </ul>
+
+            <!-- search bar -->
+            <div class="search-bar">
+              <input type="text" class="search-input" placeholder="Search for products..." onkeyup="filterProducts()" />
+              <div class="search-icon">
+                <img src="./img/search.png" alt="Search" />
+              </div>
+            </div>
+            <div class="icon-container d-flex align-items-center mt-2 mt-lg-0">
+              <a href="favourite.html" class="cart-icon">
+                <img src="./img/heart.jpg" alt="Favorite Products" />
+                <span class="cart-badge" id="fav-count">0</span>
+              </a>
+              <a href="cart.html" class="cart-icon">
+                <img src="./img/cart.png" alt="Cart" />
+                <span class="cart-badge" id="cart-count">0</span>
+              </a>
+              <div class="d-flex align-items-center">
+                <img src="./img/profile.png" alt="Profile" />
+                <a href="signup.html">
+                  <button class="create-signup-btn">Signup</button>
+                </a>
+              </div>
+              <!-- Dark Mode Toggle (same as before) -->
+              <div class="dark-mode-toggle d-flex align-items-center ms-3">
+                <img src="./img/sun.png" id="theme-toggle-icon" alt="Toggle Dark Mode" class="toggle-icon"
+                  onclick="toggleDarkMode()" style="cursor: pointer" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+    <section class="container mt-5 pt-5">
+      <h2 class="text-center vegfrucol mb-4">Ready To Eat</h2>
+      <div class="filter_buttons">
+        <button class="active" data-name="all">All</button>
+        <button data-name="pickle">Pickle</button>
+        <button data-name="jam">Jams</button>
+        <button data-name="honey">Honey</button>
+        <button data-name="others">Others</button>
+      </div>
+
+      <!-- Dropdown for mobile view -->
+      <select class="filter_dropdown" aria-label="Filter Products">
+        <option value="all">All</option>
+        <option value="pickle">Pickle</option>
+        <option value="jam">Jams</option>
+        <option value="honey">Honey</option>
+        <option value="others">Others</option>
+      </select>
+      <div class="row">
+        <div class="row filterable_cards" id="products">
+        <div class="col-md-3" data-name="pickle">
+          <div class="product-card">
+            <a href="readytoeatdetails.html" class="product-link">
+            <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" onclick="toggleFavorite(0)" />
+            <img src="./readytoeatimg/aachi lime pickle.png" class="product-image" alt="Apple" />
+            <div class="product-name">Aachi LIme Pickle</div>
+            <div class="product-price">$16.99</div>
+            </a>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+        </div>
+        <div class="col-md-3" data-name="cereals">
+          <div class="product-card">
+            <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+            <img src="./readytoeatimg/chocos.jpg" class="product-image" alt="Banana" />
+            <div class="product-name">Chocos</div>
+            <div class="product-price">$10.99</div>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+        </div>
+        <div class="col-md-3" data-name="cereals">
+          <div class="product-card">
+            <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+            <img src="./readytoeatimg/harima choco chips.jpg" class="product-image" alt="Carrot" />
+            <div class="product-name">Harima Choco Chips</div>
+            <div class="product-price">$11.50</div>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+        </div>
+        <div class="col-md-3" data-name="jam">
+          <div class="product-card">
+            <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+            <img src="./readytoeatimg/Lion Jam.png" class="product-image" alt="Broccoli" />
+            <div class="product-name">Lion Jam</div>
+            <div class="product-price">$20.00</div>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+        </div>
+
+        <div class="col-md-3" data-name="honey">
+          <div class="product-card">
+            <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+            <img src="./readytoeatimg/pure honey.jpg" class="product-image" alt="Tomato" />
+            <div class="product-name">Pure Honey</div>
+            <div class="product-price">$31.20</div>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+        </div>
+
+        <div class="col-md-3" data-name="oats">
+          <div class="product-card">
+            <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+            <img src="./readytoeatimg/Quaker Oats.jpg" class="product-image" alt="Potato" />
+            <div class="product-name">Quaker Oats</div>
+            <div class="product-price">$17.80</div>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+        </div>
+
+        <div class="col-md-3" data-name="jam">
+          <div class="product-card">
+            <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+            <img src="./readytoeatimg/Kissan mixed fruit jam.jpg" class="product-image" alt="Spinach" />
+            <div class="product-name">Kissan Mixed Fruit Jam</div>
+            <div class="product-price">$20.60</div>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+        </div>
+        <div class="col-md-3" data-name="Pickle">
+          <div class="product-card">
+            <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+            <img src="./readytoeatimg/aachi mango ginger pickle.jpg" class="product-image" alt="Potato" />
+            <div class="product-name">Mango Ginger pickle</div>
+            <div class="product-price">$17.80</div>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+        </div>
+        <div class="col-md-3" data-name="pickle">
+          <div class="product-card">
+            <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+            <img src="./readytoeatimg/aachi totamo garlic pickle.jpg" class="product-image" alt="Potato" />
+            <div class="product-name">Tomato Garlic Pickle</div>
+            <div class="product-price">$19.80</div>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+        </div>
+        <div class="col-md-3" data-name="others">
+          <div class="product-card">
+            <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+            <img src="./readytoeatimg/Amul Creamy Peanut.png" class="product-image" alt="Potato" />
+            <div class="product-name">Amul Creamy Peanut</div>
+            <div class="product-price">$27.80</div>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+        </div>
+        <div class="col-md-3" data-name="cereals">
+          <div class="product-card">
+            <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+            <img src="./readytoeatimg/kelloggs crunchy.jpg" class="product-image" alt="Potato" />
+            <div class="product-name">Kelloggs crunchy</div>
+            <div class="product-price">$27.80</div>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+        </div>
+        <div class="col-md-3" data-name="oats">
+          <div class="product-card">
+            <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+            <img src="./readytoeatimg/lion oats.jpg" class="product-image" alt="Potato" />
+            <div class="product-name">Lion Oats</div>
+            <div class="product-price">$17.80</div>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+        </div>
+        <div class="col-md-3" data-name="others">
+          <div class="product-card">
+            <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+            <img src="./readytoeatimg/Tomato Sauce.jpg" class="product-image" alt="Potato" />
+            <div class="product-name">Tomato Sauce</div>
+            <div class="product-price">$10.80</div>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+        </div>
+        <div class="col-md-3" data-name="others">
+          <div class="product-card">
+            <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+            <img src="./readytoeatimg/White rice.jpg" class="product-image" alt="Potato" />
+            <div class="product-name">White rice</div>
+            <div class="product-price">$100.80</div>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+    <footer class="sticky-footer">
+      <div class="container d-flex justify-content-between align-items-center">
+        <ul class="footer-links d-flex justify-content-between w-100">
+          <li><a href="index.html"><img src="./Home/home_processed.png" alt="Home" /></a></li>
+          <li><a href="vegetables&fruits.html"><img src="./Home/categories_processed.png" alt="Categories" /></a></li>
+          <li><a href="#"><img src="./Home/search_processed.png" alt="search" /></a></li>
+          <li><a href="deal.html"><img src="./Home/dealing_processed.png" alt="Deals" /></a></li>
+          <li><a href="Newarrivals.html"><img src="./Home/new arrival_processed.png" alt="New Arrivals" /></a></li>
+        </ul>
+      </div>
+    </footer>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const buttons = document.querySelectorAll(".filter_buttons button");
+        const dropdown = document.querySelector(".filter_dropdown");
+        const productCards = document.querySelectorAll(".col-md-3");
+
+        // Function to filter products
+        function filterProducts(category) {
+          productCards.forEach((card) => {
+            const productCategory = card.getAttribute("data-name");
+            card.style.display =
+              category === "all" || productCategory === category ? "block" : "none";
+          });
+        }
+
+        // Add click event for buttons
+        buttons.forEach((button) => {
+          button.addEventListener("click", () => {
+            buttons.forEach((b) => b.classList.remove("active"));
+            button.classList.add("active");
+            const category = button.getAttribute("data-name");
+            filterProducts(category);
+          });
+        });
+
+        // Add change event for dropdown
+        dropdown.addEventListener("change", () => {
+          const category = dropdown.value;
+          filterProducts(category);
+        });
+
+        // Initial load: Show all products
+        filterProducts("all");
+      });
+    </script>
+
+    <script src="./js/script.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

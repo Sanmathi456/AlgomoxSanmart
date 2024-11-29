@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Designing the Ultimate Smart Grocery Shopping Experience</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand d-flex align-items-center" href="#">
+          <img src="./img/grocery.jpg" class="logo" alt="Sanmathi Logo" />
+          <span class="martname">SANMART</span>
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <div class="d-flex flex-column flex-lg-row w-100 align-items-center">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <select class="form-select" id="category" onchange="redirectToPage()">
+                  <option value="">Shop by category</option>
+                  <option value="vegetables&fruits.html" class="selecthover">
+                    Vegetables & Fruits
+                  </option>
+                  <option value="snacks-namkeens.html">
+                    Snacks & Namkeens
+                  </option>
+                  <option value="ready-to-cook.html">Ready to Cook</option>
+                  <option value="ready-to-eat.html">Ready to Eat</option>
+                  <option value="baby-care.html">Baby Care</option>
+                  <option value="household-essentials.html">
+                    Household Essentials
+                  </option>
+                  <option value="stationery.html">Stationery</option>
+                  <option value="skin-care.html">Skin Care</option>
+                  <option value="dairyproducts.html">dairy products</option>
+                </select>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white" href="index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white" href="deal.html">Deals</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white" href="Newarrivals.html">New Arrivals</a>
+              </li>
+            </ul>
+
+            <!-- search bar -->
+            <div class="search-bar">
+              <input type="text" class="search-input" placeholder="Search for products..." onkeyup="filterProducts()" />
+              <div class="search-icon">
+                <img src="./img/search.png" alt="Search" />
+              </div>
+            </div>
+
+            <div class="icon-container d-flex align-items-center mt-2 mt-lg-0">
+              <a href="favourite.html" class="cart-icon">
+                <img src="./img/heart.jpg" alt="Favorite Products" />
+                <span class="cart-badge" id="fav-count">0</span>
+              </a>
+              <a href="cart.html" class="cart-icon">
+                <img src="./img/cart.png" alt="Cart" />
+                <span class="cart-badge" id="cart-count">0</span>
+              </a>
+              <div class="d-flex align-items-center">
+                <img src="./img/profile.png" alt="Profile" />
+                <a href="signup.html">
+                  <button class="create-signup-btn">Signup</button>
+                </a>
+              </div>
+              <!-- Dark Mode Toggle (same as before) -->
+              <div class="dark-mode-toggle d-flex align-items-center ms-3">
+                <img src="./img/sun.png" id="theme-toggle-icon" alt="Toggle Dark Mode" class="toggle-icon"
+                  onclick="toggleDarkMode()" style="cursor: pointer" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <div class="row filterable_cards" id="products">
+    <section class="container mt-5 pt-5">
+      <h2 class="text-center vegfrucol mb-4">Skin Cares</h2>
+      <div class="filter_buttons">
+        <button class="active" data-name="all">All</button>
+        <button data-name="soap">Soap</button>
+        <button data-name="fashwash creams">Fashwash Creams</button>
+        <button data-name="powder">Powder</button>
+        <button data-name="others">Others</button>
+      </div>
+
+      <!-- Dropdown for mobile view -->
+      <select class="filter_dropdown" aria-label="Filter Products">
+        <option value="all">All</option>
+        <option value="soap">Soap</option>
+        <option value="fashwash creams">Fashwash Creams</option>
+        <option value="powder">Powder</option>
+        <option value="others">Eraser</option>
+      </select>
+      <section class="container mt-5 pt-5">
+        <div class="row">
+          <div class="col-md-3" data-name="soap">
+            <div class="product-card">
+              <a href="skincaredetails.html" class="product-link">
+              <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" onclick="toggleFavorite(0)" />
+              <img src="./skincare/cinthol.jpg" class="product-image" alt="Apple" />
+              <div class="product-name">Cinthol</div>
+              <div class="product-price">$11.99</div>
+              </a>
+              <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+          </div>
+          <div class="col-md-3" data-name="soap">
+            <div class="product-card">
+              <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+              <img src="./skincare/Dove.jpg" class="product-image" alt="Banana" />
+              <div class="product-name">Dove</div>
+              <div class="product-price">$10.99</div>
+              <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+          </div>
+          <div class="col-md-3" data-name="powder">
+            <div class="product-card">
+              <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+              <img src="./skincare/Gokul Sandal.jpg" class="product-image" alt="Carrot" />
+              <div class="product-name">Gokul Sandal</div>
+              <div class="product-price">$11.50</div>
+              <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+          </div>
+          <div class="col-md-3" data-name="fashwash creams">
+            <div class="product-card">
+              <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+              <img src="./skincare/Himalaya.jpg" class="product-image" alt="Broccoli" />
+              <div class="product-name">Himalaya</div>
+              <div class="product-price">$20.00</div>
+              <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+          </div>
+
+          <div class="col-md-3" data-name="fashwash creams">
+            <div class="product-card">
+              <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+              <img src="./skincare/Mama Earth FaceWash.jpg" class="product-image" alt="Tomato" />
+              <div class="product-name">Mama Earth FashWash</div>
+              <div class="product-price">$21.20</div>
+              <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+          </div>
+
+          <div class="col-md-3" data-name="soap">
+            <div class="product-card">
+              <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+              <img src="./skincare/mysore sandal aoap.jpg" class="product-image" alt="Potato" />
+              <div class="product-name">Mysore Sandal Soap</div>
+              <div class="product-price">$10.80</div>
+              <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+          </div>
+
+          <div class="col-md-3" data-name="soap">
+            <div class="product-card">
+              <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+              <img src="./skincare/Pears.jpg" class="product-image" alt="Spinach" />
+              <div class="product-name">Pear</div>
+              <div class="product-price">$12.60</div>
+              <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+          </div>
+
+          <div class="col-md-3" data-name="powder">
+            <div class="product-card">
+              <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+              <img src="./skincare/ponds dream flower powder.jpg" class="product-image" alt="Cucumber" />
+              <div class="product-name">Ponds Dream Flower Powder</div>
+              <div class="product-price">$20.75</div>
+              <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+          </div>
+
+          <div class="col-md-3" data-name="powder">
+            <div class="product-card">
+              <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+              <img src="./skincare/Yardely.jpg" class="product-image" alt="Orange" />
+              <div class="product-name">Yardely</div>
+              <div class="product-price">$21.30</div>
+              <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+          </div>
+          <div class="col-md-3" data-name="fashwash creams">
+            <div class="product-card">
+              <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+              <img src="./skincare/Bulgarian Valley Rose Water Toner.png" class="product-image" alt="Orange" />
+              <div class="product-name">Bulgarian Valley Rose Water Toner</div>
+              <div class="product-price">$50.30</div>
+              <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+          </div>
+          <div class="col-md-3" data-name="fashwash creams">
+            <div class="product-card">
+              <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+              <img src="./skincare/Derma Sunscreen.jpg" class="product-image" alt="Orange" />
+              <div class="product-name">Derma SunScreen</div>
+              <div class="product-price">$100.30</div>
+              <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+          </div>
+          <div class="col-md-3" data-name="fashwash creams">
+            <div class="product-card">
+              <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+              <img src="./skincare/Eye Cream.jpg" class="product-image" alt="Orange" />
+              <div class="product-name">Eye Cream</div>
+              <div class="product-price">$21.30</div>
+              <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+          </div>
+          <div class="col-md-3" data-name="others">
+            <div class="product-card">
+              <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+              <img src="./skincare/Facial Oil.jpg" class="product-image" alt="Orange" />
+              <div class="product-name">Facial oil</div>
+              <div class="product-price">$31.30</div>
+              <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+          </div>
+          <div class="col-md-3" data-name="fashwash creams">
+            <div class="product-card">
+              <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+              <img src="./skincare/Fash Wash.jpg" class="product-image" alt="Orange" />
+              <div class="product-name">Fash Wash</div>
+              <div class="product-price">$30.30</div>
+              <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+          </div>
+          <div class="col-md-3" data-name="powder">
+            <div class="product-card">
+              <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+              <img src="./skincare/Gokul Red Sandal.jpg" class="product-image" alt="Orange" />
+              <div class="product-name">GokulRed Sandal</div>
+              <div class="product-price">$39.30</div>
+              <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+          </div>
+          <div class="col-md-3" data-name="powder">
+            <div class="product-card">
+              <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+              <img src="./skincare/Gokul Rose and Sandal.jpg" class="product-image" alt="Orange" />
+              <div class="product-name">GokulRose and Sandal</div>
+              <div class="product-price">$31.30</div>
+              <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+          </div>
+          <div class="col-md-3" data-name="powder">
+            <div class="product-card">
+              <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+              <img src="./skincare/Gokul Secret Garden.jpg" class="product-image" alt="Orange" />
+              <div class="product-name">Gokul Secret Garden</div>
+              <div class="product-price">$41.30</div>
+              <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+          </div>
+          <div class="col-md-3" data-name="others">
+            <div class="product-card">
+              <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+              <img src="./skincare/Hawaiian Rumba Shower Gel.png" class="product-image" alt="Orange" />
+              <div class="product-name">Rumba Shower Gel</div>
+              <div class="product-price">$19.30</div>
+              <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+          </div>
+          <div class="col-md-3" data-name="others">
+            <div class="product-card">
+              <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+              <img src="./skincare/Herbodaya Rose Water.jpg" class="product-image" alt="Orange" />
+              <div class="product-name">Herbodaya Rose Water</div>
+              <div class="product-price">$60.08</div>
+              <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+          </div>
+          <div class="col-md-3" data-name="fashwash creams">
+            <div class="product-card">
+              <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+              <img src="./skincare/Himalaya Sunscreen.jpg" class="product-image" alt="Orange" />
+              <div class="product-name">Himalaya Sunscreen</div>
+              <div class="product-price">$90.30</div>
+              <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+          </div>
+          <div class="col-md-3" data-name="others">
+            <div class="product-card">
+              <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+              <img src="./skincare/kashthuri manja.jpg" class="product-image" alt="Orange" />
+              <div class="product-name">Kashthuri Manjal</div>
+              <div class="product-price">$49.30</div>
+              <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+          </div>
+          <div class="col-md-3" data-name="others">
+            <div class="product-card">
+              <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+              <img src="./skincare/Lip balm.jpg" class="product-image" alt="Orange" />
+              <div class="product-name">Lip Balm</div>
+              <div class="product-price">$19.30</div>
+              <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+          </div>
+          <div class="col-md-3" data-name="others">
+            <div class="product-card">
+              <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+              <img src="./skincare/Lovin Shower Gel.png" class="product-image" alt="Orange" />
+              <div class="product-name">Lovin Shower Gel</div>
+              <div class="product-price">$51.30</div>
+              <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+          </div>
+          <div class="col-md-3" data-name="others">
+            <div class="product-card">
+              <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+              <img src="./skincare/Mask.jpg" class="product-image" alt="Orange" />
+              <div class="product-name">Mask</div>
+              <div class="product-price">$21.30</div>
+              <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+          </div>
+          <div class="col-md-3" data-name="others">
+            <div class="product-card">
+              <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+              <img src="./skincare/Niacinamide.jpg" class="product-image" alt="Orange" />
+              <div class="product-name">Niacinamide moisturizer</div>
+              <div class="product-price">$21.30</div>
+              <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+          </div>
+          <div class="col-md-3" data-name="soap">
+            <div class="product-card">
+              <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+              <img src="./skincare/Pears Blue.jpg" class="product-image" alt="Orange" />
+              <div class="product-name">Pears Fresh</div>
+              <div class="product-price">$21.30</div>
+              <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+          </div>
+          <div class="col-md-3" data-name="others">
+            <div class="product-card">
+              <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+              <img src="./skincare/Ponds Moisturizer.jpg" class="product-image" alt="Orange" />
+              <div class="product-name">Ponds moisturizer</div>
+              <div class="product-price">$30.30</div>
+              <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+          </div>
+          <div class="col-md-3" data-name="fashwash creams">
+            <div class="product-card">
+              <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+              <img src="./skincare/Sun Screen For Normal Skin.jpg" class="product-image" alt="Orange" />
+              <div class="product-name">Sunscreen for NormalSkin</div>
+              <div class="product-price">$89.30</div>
+              <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+  </div>
+  </section>
+
+  <footer class="sticky-footer">
+    <div class="container d-flex justify-content-between align-items-center">
+      <ul class="footer-links d-flex justify-content-between w-100">
+        <li><a href="index.html"><img src="./Home/home_processed.png" alt="Home" /></a></li>
+        <li><a href="vegetables&fruits.html"><img src="./Home/categories_processed.png" alt="Categories" /></a></li>
+        <li><a href="#"><img src="./Home/search_processed.png" alt="search" /></a></li>
+        <li><a href="deal.html"><img src="./Home/dealing_processed.png" alt="Deals" /></a></li>
+        <li><a href="Newarrivals.html"><img src="./Home/new arrival_processed.png" alt="New Arrivals" /></a></li>
+      </ul>
+    </div>
+  </footer>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const buttons = document.querySelectorAll(".filter_buttons button");
+      const dropdown = document.querySelector(".filter_dropdown");
+      const productCards = document.querySelectorAll(".col-md-3");
+
+      // Function to filter products
+      function filterProducts(category) {
+        productCards.forEach((card) => {
+          const productCategory = card.getAttribute("data-name");
+          card.style.display =
+            category === "all" || productCategory === category ? "block" : "none";
+        });
+      }
+
+      // Add click event for buttons
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          buttons.forEach((b) => b.classList.remove("active"));
+          button.classList.add("active");
+          const category = button.getAttribute("data-name");
+          filterProducts(category);
+        });
+      });
+
+      // Add change event for dropdown
+      dropdown.addEventListener("change", () => {
+        const category = dropdown.value;
+        filterProducts(category);
+      });
+
+      // Initial load: Show all products
+      filterProducts("all");
+    });
+  </script>
+
+
+  <script src="./js/script.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

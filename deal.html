@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Designing the Ultimate Smart Grocery Shopping Experience</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    .offer-btn {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background-color: red;
+      color: white;
+      font-size: 14px;
+      font-weight: bold;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+      z-index: 1;
+      animation: blink 1s infinite;
+    }
+
+    .product-card {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      margin-bottom: 30px;
+    }
+
+    .product-name {
+      text-align: center;
+      font-size: 18px;
+      margin-top: 10px;
+    }
+
+    .product-price {
+      text-align: center;
+      font-size: 16px;
+      color: green;
+      font-weight: bold;
+    }
+
+    @keyframes blink {
+      0% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.5;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+
+    .category-title {
+      text-align: center;
+      font-size: 30px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+   
+    @media (max-width: 768px) {
+      .category-title {
+        margin-top: 20px;
+      }
+    }
+
+   
+    body.dark-mode .category-title {
+      color: tan;
+    }
+
+  
+.dark-mode-toggle-container {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 999; 
+}
+@media (max-width: 768px) {
+  .dark-mode-toggle-container {
+    right: 10px;
+    top: 10px;
+  }
+}
+@media (max-width: 576px) {
+  .dark-mode-toggle-container {
+    top: 15px;
+    right: 10px;
+  }
+}
+
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand d-flex align-items-center" href="#">
+          <img src="./img/grocery.jpg" class="logo" alt="Sanmathi Logo" />
+          <span class="martname">SANMATHI MART</span>
+        </a>
+              </div>
+              <div class="dark-mode-toggle d-flex align-items-center ms-3">
+                <img src="./img/sun.png" id="theme-toggle-icon" alt="Toggle Dark Mode" class="toggle-icon"  style="border-radius: 50%;"
+                  onclick="toggleDarkMode()" style="cursor: pointer" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <section class="container mt-5 pt-5">
+    <h2 class="category-title">Baby Care</h2>
+    <div class="row">
+      <div class="col-md-3">
+        <div class="product-card">
+          <button class="offer-btn">20% OFF</button>
+          <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" onclick="toggleFavorite(0)" />
+          <img src="./babycareimg/bella baby.jpg" class="product-image" alt="Apple" />
+          <div class="product-name">Bella Baby</div>
+          <div class="product-price">$10.99</div>
+          <button class="add-to-cart-btn">Add to Cart</button>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="product-card">
+          <button class="offer-btn">20% OFF</button>
+          <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+          <img src="./babycareimg/Huggies Wonder Pants.jpg" class="product-image" alt="Banana" />
+          <div class="product-name">Huggies Wonder Pants</div>
+          <div class="product-price">$20.99</div>
+          <button class="add-to-cart-btn">Add to Cart</button>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="product-card">
+          <button class="offer-btn">20% OFF</button>
+          <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+          <img src="./babycareimg/Johnsons baby oil.jpg" class="product-image" alt="Carrot" />
+          <div class="product-name">Johnsons baby oil</div>
+          <div class="product-price">$11.50</div>
+          <button class="add-to-cart-btn">Add to Cart</button>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="product-card">
+          <button class="offer-btn">20% OFF</button>
+          <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+          <img src="./babycareimg/johnsons baby.jpg" class="product-image" alt="Tomato" />
+          <div class="product-name">Johnson's Baby</div>
+          <div class="product-price">$11.20</div>
+          <button class="add-to-cart-btn">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="container mt-5 pt-5">
+    <h2 class="category-title">Fruits and Vegetables</h2>
+    <div class="row">
+      <div class="col-md-3">
+        <div class="product-card">
+          <button class="offer-btn">30% OFF</button>
+          <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+          <img src="./img/cauliflower.jpg" class="product-image" alt="Cauliflower" />
+          <div class="product-name">Cauliflower</div>
+          <div class="product-price">$16.50</div>
+          <button class="add-to-cart-btn">Add to Cart</button>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="product-card">
+          <button class="offer-btn">30% OFF</button>
+          <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+          <img src="./img/green peas.jpg" class="product-image" alt="Green peas" />
+          <div class="product-name">Green Peas</div>
+          <div class="product-price">$18.50</div>
+          <button class="add-to-cart-btn">Add to Cart</button>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="product-card">
+          <button class="offer-btn">30% OFF</button>
+          <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+          <img src="./img/pomegranates.jpg" class="product-image" alt="Pomegranates" />
+          <div class="product-name">Pomegranates</div>
+          <div class="product-price">$48.50</div>
+          <button class="add-to-cart-btn">Add to Cart</button>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="product-card">
+          <button class="offer-btn">30% OFF</button>
+          <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+          <img src="./img/ridge gourd.jpg" class="product-image" alt="Ridge Gourd" />
+          <div class="product-name">Ridge Gourd</div>
+          <div class="product-price">$38.50</div>
+          <button class="add-to-cart-btn">Add to Cart</button>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="product-card">
+          <button class="offer-btn">30% OFF</button>
+          <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+          <img src="./img/snack gourd.jpg" class="product-image" alt="Snack Gourd" />
+          <div class="product-name">Snack Gourd</div>
+          <div class="product-price">$38.50</div>
+          <button class="add-to-cart-btn">Add to Cart</button>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="product-card">
+          <button class="offer-btn">30% OFF</button>
+          <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+          <img src="./img/apple.jpg" class="product-image" alt="Snack Gourd" />
+          <div class="product-name">apple</div>
+          <div class="product-price">$48.50</div>
+          <button class="add-to-cart-btn">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="container mt-5 pt-5">
+    <h2 class="category-title">Household Essentials</h2>
+    <div class="row">
+      <div class="col-md-3">
+        <div class="product-card">
+          <button class="offer-btn">25% OFF</button>
+          <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+          <img src="./household essentials/Dust pan small.png" class="product-image" alt="Dust Pan Small" />
+          <div class="product-name">Dust Pan Small</div>
+          <div class="product-price">$10.99</div>
+          <button class="add-to-cart-btn">Add to Cart</button>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="product-card">
+          <button class="offer-btn">25% OFF</button>
+          <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+          <img src="./household essentials/Gloves.png" class="product-image" alt="Gloves" />
+          <div class="product-name">Gloves</div>
+          <div class="product-price">$21.50</div>
+          <button class="add-to-cart-btn">Add to Cart</button>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="product-card">
+          <button class="offer-btn">25% OFF</button>
+          <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+          <img src="./household essentials/Hit Dengue & Malaria.jpg" class="product-image" alt="Hit Dengue & Malaria" />
+          <div class="product-name">Hit Dengue & Malaria</div>
+          <div class="product-price">$20.00</div>
+          <button class="add-to-cart-btn">Add to Cart</button>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="product-card">
+          <button class="offer-btn">25% OFF</button>
+          <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+          <img src="./household essentials/Odonil Room Freshener.jpg" class="product-image"
+            alt="Odonil Room Freshener" />
+          <div class="product-name">Odonil Room Freshener</div>
+          <div class="product-price">$29.20</div>
+          <button class="add-to-cart-btn">Add to Cart</button>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="product-card">
+          <button class="offer-btn">25% OFF</button>
+          <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+          <img src="./household essentials/Odonilair Fresher.jpg" class="product-image" alt="Odonil Air Fresher" />
+          <div class="product-name">Odonil Air Fresher</div>
+          <div class="product-price">$20.80</div>
+          <button class="add-to-cart-btn">Add to Cart</button>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="product-card">
+          <button class="offer-btn">25% OFF</button>
+          <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+          <img src="./household essentials/Plastic Tea Strainer.png" class="product-image" alt="Plastic Tea Strainer" />
+          <div class="product-name">Plastic Tea Strainer</div>
+          <div class="product-price">$19.60</div>
+          <button class="add-to-cart-btn">Add to Cart</button>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="product-card">
+          <button class="offer-btn">25% OFF</button>
+          <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+          <img src="./household essentials/Scrub.png" class="product-image" alt="Scrub" />
+          <div class="product-name">Scrub</div>
+          <div class="product-price">$4.75</div>
+          <button class="add-to-cart-btn">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="sticky-footer">
+    <div class="container d-flex justify-content-between align-items-center">
+      <ul class="footer-links d-flex justify-content-between w-100">
+        <li><a href="index.html"><img src="./Home/home_processed.png" alt="Home" /></a></li>
+        <li><a href="vegetables&fruits.html"><img src="./Home/categories_processed.png" alt="Categories" /></a></li>
+        <li><a href="#"><img src="./Home/search_processed.png" alt="search" /></a></li>
+        <li><a href="deal.html"><img src="./Home/dealing_processed.png" alt="Deals" /></a></li>
+        <li><a href="Newarrivals.html"><img src="./Home/new arrival_processed.png" alt="New Arrivals" /></a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+  <script>
+    // Function to redirect to the selected category page
+    function redirectToPage() {
+      var category = document.getElementById("category").value;
+      if (category) {
+        window.location.href = category;
+      }
+    }
+
+    // Function to toggle favorite status
+    function toggleFavorite(productId) {
+      const favCount = document.getElementById("fav-count");
+      favCount.innerText = parseInt(favCount.innerText) + 1;
+    }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-QF4rQ/9JcRBhNchBz+ynTioft92HkHbhbV6Iv9A2s8ovd1R03pPRekRtQdbmYjD1" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js" integrity="sha384-Q1FlCu55x2UOW1iv/CoGmY+VX1NU8VBlrDIFe7xTDfjh7Az4+/2KhWvP6MkTykYI" crossorigin="anonymous"></script>
+  
+</body>
+
+</html>
