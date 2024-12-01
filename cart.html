@@ -335,7 +335,7 @@ body.dark-mode .search-bar .search-input {
         cartCount.textContent = cart.length;
       }
     }
-
+  
     function updateFavCount() {
       let fav = JSON.parse(localStorage.getItem("favorites")) || [];
       let favCount = document.getElementById("fav-count");
@@ -343,24 +343,17 @@ body.dark-mode .search-bar .search-input {
         favCount.textContent = fav.length;
       }
     }
-
-    function redirectToPage() {
-      let category = document.getElementById("category").value;
-      if (category) {
-        window.location.href = category;
-      }
-    }
-
+  
     function updateCartTotal() {
-      let cart = JSON.parse(localStorage.getItem("cart")) || []; 
-      let cartTotal = document.getElementById("cart-total"); 
-      let total = cart.reduce((sum, item) => sum + item.price, 0); 
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      let cartTotal = document.getElementById("cart-total");
+      let total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
       cartTotal.innerHTML = `Total: $${total.toFixed(2)}`;
       if (total > 100) {
         alert("Error: Total cannot exceed $100!");
         let errorMessage = document.getElementById("error-message");
         if (errorMessage) {
-          errorMessage.textContent = "Error: Budget is exceed $100!";
+          errorMessage.textContent = "Error: Budget exceeds $100!";
           errorMessage.style.color = "red";
         }
       } else {
@@ -370,54 +363,85 @@ body.dark-mode .search-bar .search-input {
         }
       }
     }
-
+  
     function removeFromCart(productName) {
       let cart = JSON.parse(localStorage.getItem("cart")) || [];
       cart = cart.filter((item) => item.name !== productName);
       localStorage.setItem("cart", JSON.stringify(cart));
       updateCartCount();
-      updateCartTotal(); 
+      updateCartTotal();
       document.getElementById(productName).remove();
     }
-
-    function toggleDarkMode() {
-      document.body.classList.toggle("dark-mode");
+  
+    function incrementQuantity(productName) {
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      cart = cart.map((item) => {
+        if (item.name === productName) {
+          item.quantity++;
+        }
+        return item;
+      });
+      localStorage.setItem("cart", JSON.stringify(cart));
+      document.querySelector(`#${productName} .quantity`).textContent = cart.find(
+        (item) => item.name === productName
+      ).quantity;
+      updateCartTotal();
     }
-
+  
+    function decrementQuantity(productName) {
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      cart = cart.map((item) => {
+        if (item.name === productName && item.quantity > 1) {
+          item.quantity--;
+        }
+        return item;
+      });
+      localStorage.setItem("cart", JSON.stringify(cart));
+      document.querySelector(`#${productName} .quantity`).textContent = cart.find(
+        (item) => item.name === productName
+      ).quantity;
+      updateCartTotal();
+    }
+  
     document.addEventListener("DOMContentLoaded", function () {
       updateCartCount();
       updateFavCount();
-
+  
       let cart = JSON.parse(localStorage.getItem("cart")) || [];
       let cartContainer = document.getElementById("cart-items");
       cartContainer.innerHTML = "";
-
-    
+  
       cart.forEach((item) => {
         let itemName = item.name || "Product Name Unavailable";
-        let itemDescription = item.description || ""; 
-        let itemPrice = item.price || 0; 
-        let itemImage = item.image || "./img/default-product.jpg"; 
-
+        let itemDescription = item.description || "";
+        let itemPrice = item.price || 0;
+        let itemQuantity = item.quantity || 1;
+        let itemImage = item.image || "./img/default-product.jpg";
+  
         let cartItem = document.createElement("div");
         cartItem.classList.add("cart-item");
-        cartItem.id = itemName; 
+        cartItem.id = itemName;
         cartItem.innerHTML = `
             <img src="${itemImage}" alt="${itemName}" class="cart-item-img" />
             <div class="cart-item-details">
               <h3>${itemName}</h3>
-              <p>${itemDescription}</p>  <!-- Empty if no description -->
-              <p>$${itemPrice.toFixed(2)}</p>
+              <p>${itemDescription}</p>
+              <p>Price: $${itemPrice.toFixed(2)}</p>
+              <p>
+                Quantity: 
+                <button onclick="decrementQuantity('${itemName}')">-</button>
+                <span class="quantity">${itemQuantity}</span>
+                <button onclick="incrementQuantity('${itemName}')">+</button>
+              </p>
             </div>
             <button onclick="removeFromCart('${itemName}')">Remove</button>
           `;
         cartContainer.appendChild(cartItem);
       });
-
+  
       updateCartTotal();
     });
-
-    // Function to toggle dark mode
+  
     function toggleDarkMode() {
       document.body.classList.toggle("dark-mode");
       if (document.body.classList.contains("dark-mode")) {
@@ -426,6 +450,7 @@ body.dark-mode .search-bar .search-input {
         localStorage.setItem("theme", "light");
       }
     }
+  
     window.onload = function () {
       const savedTheme = localStorage.getItem("theme");
       if (savedTheme === "dark") {
@@ -434,7 +459,9 @@ body.dark-mode .search-bar .search-input {
         document.body.classList.remove("dark-mode");
       }
     };
+    
   </script>
+  
 </body>
 
 </html>
