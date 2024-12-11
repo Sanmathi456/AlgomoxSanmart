@@ -9,11 +9,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/styles.css" />
   <style>
-     @media (max-width: 768px) { 
-  .lastcard {
-    margin-bottom: 70px;
-  }
-}
+    @media (max-width: 768px) {
+      .lastcard {
+        margin-bottom: 70px;
+      }
+    }
   </style>
 </head>
 
@@ -118,11 +118,11 @@
       <div class="row filterable_cards" id="products">
         <div class="col-md-3 product-card meat" data-name="meats">
           <a href="readytocookdetail.html" class="product-link">
-          <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
-          <img src="./meat-seafoodimg/Goat.jpg" class="product-image" alt="Goat" />
-          <div class="product-name">Goat</div>
-          <div class="product-price">$300.20</div>
-        </a>
+            <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" />
+            <img src="./meat-seafoodimg/Goat.jpg" class="product-image" alt="Goat" />
+            <div class="product-name">Goat</div>
+            <div class="product-price">$300.20</div>
+          </a>
           <button class="add-to-cart-btn">Add to Cart</button>
         </div>
         <div class="col-md-3 product-card meat" data-name="meats">
@@ -175,8 +175,6 @@
       const buttons = document.querySelectorAll(".filter_buttons button");
       const dropdown = document.querySelector(".filter_dropdown");
       const productCards = document.querySelectorAll(".col-md-3");
-
-      // Function to filter products
       function filterProducts(category) {
         productCards.forEach((card) => {
           const productCategory = card.getAttribute("data-name");
@@ -186,8 +184,6 @@
               : "none";
         });
       }
-
-      // Add click event for buttons
       buttons.forEach((button) => {
         button.addEventListener("click", () => {
           buttons.forEach((b) => b.classList.remove("active"));
@@ -196,16 +192,30 @@
           filterProducts(category);
         });
       });
-
-      // Add change event for dropdown
       dropdown.addEventListener("change", () => {
         const category = dropdown.value;
         filterProducts(category);
       });
-
-      // Initial load: Show all products
       filterProducts("all");
     });
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark-mode");
+      if (document.body.classList.contains("dark-mode")) {
+        localStorage.setItem("theme", "dark");
+      } else {
+        localStorage.setItem("theme", "light");
+      }
+    }
+    window.onload = function () {
+      const savedTheme = localStorage.getItem("theme");
+      if (savedTheme === "dark") {
+        document.body.classList.add("dark-mode");
+      } else {
+        document.body.classList.remove("dark-mode");
+      }
+    };
+
+
   </script>
 
   <script src="./js/script.js"></script>

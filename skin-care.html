@@ -9,11 +9,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/styles.css" />
   <style>
-     @media (max-width: 768px) { 
-  .lastcard {
-    margin-bottom: 70px;
-  }
-}
+    @media (max-width: 768px) {
+      .lastcard {
+        margin-bottom: 70px;
+      }
+    }
   </style>
 </head>
 
@@ -88,7 +88,6 @@
                   <button class="create-signup-btn">Signup</button>
                 </a>
               </div>
-              <!-- Dark Mode Toggle (same as before) -->
               <div class="dark-mode-toggle d-flex align-items-center ms-3">
                 <img src="./img/sun.png" id="theme-toggle-icon" alt="Toggle Dark Mode" class="toggle-icon"
                   onclick="toggleDarkMode()" style="cursor: pointer" />
@@ -123,10 +122,10 @@
           <div class="col-md-3" data-name="soap">
             <div class="product-card">
               <a href="skincaredetails.html" class="product-link">
-              <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" onclick="toggleFavorite(0)" />
-              <img src="./skincare/cinthol.jpg" class="product-image" alt="Apple" />
-              <div class="product-name">Cinthol</div>
-              <div class="product-price">$11.99</div>
+                <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" onclick="toggleFavorite(0)" />
+                <img src="./skincare/cinthol.jpg" class="product-image" alt="Apple" />
+                <div class="product-name">Cinthol</div>
+                <div class="product-price">$11.99</div>
               </a>
               <button class="add-to-cart-btn">Add to Cart</button>
             </div>
@@ -400,7 +399,7 @@
       const dropdown = document.querySelector(".filter_dropdown");
       const productCards = document.querySelectorAll(".col-md-3");
 
-      // Function to filter products
+
       function filterProducts(category) {
         productCards.forEach((card) => {
           const productCategory = card.getAttribute("data-name");
@@ -409,7 +408,6 @@
         });
       }
 
-      // Add click event for buttons
       buttons.forEach((button) => {
         button.addEventListener("click", () => {
           buttons.forEach((b) => b.classList.remove("active"));
@@ -418,16 +416,29 @@
           filterProducts(category);
         });
       });
-
-      // Add change event for dropdown
       dropdown.addEventListener("change", () => {
         const category = dropdown.value;
         filterProducts(category);
       });
-
-      // Initial load: Show all products
       filterProducts("all");
     });
+
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark-mode");
+      if (document.body.classList.contains("dark-mode")) {
+        localStorage.setItem("theme", "dark");
+      } else {
+        localStorage.setItem("theme", "light");
+      }
+    }
+    window.onload = function () {
+      const savedTheme = localStorage.getItem("theme");
+      if (savedTheme === "dark") {
+        document.body.classList.add("dark-mode");
+      } else {
+        document.body.classList.remove("dark-mode");
+      }
+    };
   </script>
 
 

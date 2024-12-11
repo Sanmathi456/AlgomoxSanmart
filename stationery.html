@@ -10,12 +10,12 @@
   <link rel="stylesheet" href="css/styles.css" />
   <style>
     @media (max-width: 768px) {
-  .lastcard {
-    margin-bottom: 60px;
-  }
-}
+      .lastcard {
+        margin-bottom: 60px;
+      }
+    }
   </style>
-  
+
 </head>
 
 <body>
@@ -123,16 +123,16 @@
     </select>
 
     <section class="container mt-5 pt-5">
-      
+
       <div class="row filterable_cards" id="products">
         <div class="row">
-          <div class="col-md-3 card"  id="apsara" data-name="pencil">
+          <div class="col-md-3 card" id="apsara" data-name="pencil">
             <div class="product-card">
               <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" onclick="toggleFavorite(0)" />
               <a href="stationaarydetails.html" class="product-link">
-              <img src="./stationaryimg/Apsara Extra Dark.jpg" class="product-image" alt="Apple" />
-              <div class="product-name">Apsara Extra Dark</div>
-              <div class="product-price">$6.99</div>
+                <img src="./stationaryimg/Apsara Extra Dark.jpg" class="product-image" alt="Apple" />
+                <div class="product-name">Apsara Extra Dark</div>
+                <div class="product-price">$6.99</div>
               </a>
               <button class="add-to-cart-btn">Add to Cart</button>
             </div>
@@ -459,7 +459,7 @@
           <li><a href="Newarrivals.html"><img src="./Home/new arrival_processed.png" alt="New Arrivals" /></a></li>
         </ul>
       </div>
-    </footer>  
+    </footer>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         const buttons = document.querySelectorAll(".filter_buttons button");
@@ -474,8 +474,6 @@
               category === "all" || productCategory === category ? "block" : "none";
           });
         }
-
-        // Add click event for buttons
         buttons.forEach((button) => {
           button.addEventListener("click", () => {
             buttons.forEach((b) => b.classList.remove("active"));
@@ -484,14 +482,31 @@
             filterProducts(category);
           });
         });
-
-        // Add change event for dropdown
         dropdown.addEventListener("change", () => {
           const category = dropdown.value;
           filterProducts(category);
         });
         filterProducts("all");
       });
+
+
+      function toggleDarkMode() {
+        document.body.classList.toggle("dark-mode");
+        if (document.body.classList.contains("dark-mode")) {
+          localStorage.setItem("theme", "dark");
+        } else {
+          localStorage.setItem("theme", "light");
+        }
+      }
+      window.onload = function () {
+        const savedTheme = localStorage.getItem("theme");
+        if (savedTheme === "dark") {
+          document.body.classList.add("dark-mode");
+        } else {
+          document.body.classList.remove("dark-mode");
+        }
+      };
+
 
     </script>
     <script src="./js/script.js"></script>

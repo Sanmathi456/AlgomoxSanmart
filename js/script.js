@@ -8,85 +8,12 @@ function redirectToPage() {
   }
 }
 
-
-console.log(localStorage.getItem("favorites")); // Check what's stored
-if (annyang) {
-  // List of products and their combinations
-  const productCombinations = {
-    apple: 'Apple pairs well with peanut butter or cheese.',
-    banana: 'Banana can be combined with yogurt or oats.',
-    carrot: 'Carrot is great with hummus or in salads.',
-    broccoli: 'Broccoli goes well with garlic or cheese sauce.',
-    tomato: 'Tomato pairs well with basil and mozzarella.',
-    potato: 'Potato works with butter or sour cream.',
-    grapes: 'Grapes taste great with cheese or crackers.',
-    cucumber: 'Cucumber pairs with yogurt or dill.',
-    orange: 'Orange goes well with chocolate or cinnamon.',
-    pineapple: 'Pineapple is great with ham or coconut.',
-    peach: 'Peach combines well with cream or honey.',
-    lemon: 'Lemon enhances tea or fish dishes.',
-    'bell pepper': 'Bell pepper is great with hummus or in stir-fries.',
-    'ladies finger': 'Ladies finger works in curry or stir-fries.',
-    melon: 'Melon pairs with prosciutto or mint.',
-    avocado: 'Avocado is perfect with toast or in salads.',
-    bourbon: 'Bourbon biscuits are perfect with tea or coffee.',
-    britania: 'Britannia cookies go well with milk.',
-    cadbury: 'Cadbury chocolate is great with ice cream.',
-    darkfantacy: 'Dark Fantasy is a perfect dessert treat.',
-    kissan: 'Kissan jam is best with bread or parathas.',
-    'milk bikis': 'Milk Bikis is a great snack for kids.',
-    yippee: 'Yippee noodles are perfect for a quick meal.',
-    fuse: 'Fuse chocolate pairs well with coffee.',
-    gems: 'Gems are a colorful addition to cakes or ice cream.',
-    galaxy: 'Galaxy chocolate is great for desserts.',
-    'kinder joy': 'Kinder Joy is fun for kids with a surprise.',
-    chicken: 'Chicken pairs well with spices or grilled dishes.',
-    mutton: 'Mutton works perfectly in biryani or curry.',
-    beef: 'Beef is excellent for steaks or burgers.',
-    fish: 'Fish goes well with lemon or spices.',
-    crab: 'Crab pairs nicely with butter or garlic sauce.',
-    chocos: 'Chocos is a breakfast favorite with milk.',
-    jam: 'Jam is perfect with bread or pancakes.',
-    pickle: 'Pickle enhances the flavor of rice or roti.',
-    rice: 'Rice pairs well with curry or dal.',
-    pampers: 'Pampers are essential for babies.',
-    soap: 'Soap keeps you fresh and clean.',
-    oil: 'Oil is crucial for cooking or moisturizing.',
-    pen: 'Pens are essential for writing.',
-    pencil: 'Pencils are perfect for sketching or notes.',
-    gum: 'Gum is great for sticking materials together.',
-    notebook: 'Notebooks are necessary for taking notes.',
-    scale: 'Scales are useful for measurements.',
-    milk: 'Milk is great for drinking or making desserts.',
-    butter: 'Butter pairs well with toast or pancakes.',
-    cheese: 'Cheese is perfect for pizzas or sandwiches.',
-    'ice cream': 'Ice cream is a favorite dessert for all.',
-    paneer: 'Paneer is versatile in Indian curries or snacks.'
-  };
-
-  // Define dynamic commands
-  const commands = {};
-
-  for (const product in productCombinations) {
-    commands[product] = (function(product) {
-      return function() {
-        alert(`${product}: ${productCombinations[product]}`);
-      };
-    })(product);
-  }
-
-  // Add commands to Annyang
-  annyang.addCommands(commands);
-
-  // Start listening
-  annyang.start();
-}
-
 //added to cart
 function updateCartCount() {
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
   let cartCount = document.getElementById("cart-count");
   cartCount.textContent = cart.length;
+  console.log("upadate")
 }
 function addToCart(productName, productPrice, productImage) {
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -213,22 +140,102 @@ function updateFavCount() {
   }
 }
 
-// Dark mode
+console.log(localStorage.getItem("favorites")); // Check what's stored
+if (annyang) {
+  // List of products and their combinations
+  const productCombinations = {
+    apple: 'Apple pairs well with peanut butter or cheese.',
+    banana: 'Banana can be combined with yogurt or oats.',
+    carrot: 'Carrot is great with hummus or in salads.',
+    broccoli: 'Broccoli goes well with garlic or cheese sauce.',
+    tomato: 'Tomato pairs well with basil and mozzarella.',
+    potato: 'Potato works with butter or sour cream.',
+    grapes: 'Grapes taste great with cheese or crackers.',
+    cucumber: 'Cucumber pairs with yogurt or dill.',
+    orange: 'Orange goes well with chocolate or cinnamon.',
+    pineapple: 'Pineapple is great with ham or coconut.',
+    peach: 'Peach combines well with cream or honey.',
+    lemon: 'Lemon enhances tea or fish dishes.',
+    'bell pepper': 'Bell pepper is great with hummus or in stir-fries.',
+    'ladies finger': 'Ladies finger works in curry or stir-fries.',
+    melon: 'Melon pairs with prosciutto or mint.',
+    avocado: 'Avocado is perfect with toast or in salads.',
+    bourbon: 'Bourbon biscuits are perfect with tea or coffee.',
+    britania: 'Britannia cookies go well with milk.',
+    cadbury: 'Cadbury chocolate is great with ice cream.',
+    darkfantacy: 'Dark Fantasy is a perfect dessert treat.',
+    kissan: 'Kissan jam is best with bread or parathas.',
+    'milk bikis': 'Milk Bikis is a great snack for kids.',
+    yippee: 'Yippee noodles are perfect for a quick meal.',
+    fuse: 'Fuse chocolate pairs well with coffee.',
+    gems: 'Gems are a colorful addition to cakes or ice cream.',
+    galaxy: 'Galaxy chocolate is great for desserts.',
+    'kinder joy': 'Kinder Joy is fun for kids with a surprise.',
+    chicken: 'Chicken pairs well with spices or grilled dishes.',
+    mutton: 'Mutton works perfectly in biryani or curry.',
+    beef: 'Beef is excellent for steaks or burgers.',
+    fish: 'Fish goes well with lemon or spices.',
+    crab: 'Crab pairs nicely with butter or garlic sauce.',
+    chocos: 'Chocos is a breakfast favorite with milk.',
+    jam: 'Jam is perfect with bread or pancakes.',
+    pickle: 'Pickle enhances the flavor of rice or roti.',
+    rice: 'Rice pairs well with curry or dal.',
+    pampers: 'Pampers are essential for babies.',
+    soap: 'Soap keeps you fresh and clean.',
+    oil: 'Oil is crucial for cooking or moisturizing.',
+    pen: 'Pens are essential for writing.',
+    pencil: 'Pencils are perfect for sketching or notes.',
+    gum: 'Gum is great for sticking materials together.',
+    notebook: 'Notebooks are necessary for taking notes.',
+    scale: 'Scales are useful for measurements.',
+    milk: 'Milk is great for drinking or making desserts.',
+    butter: 'Butter pairs well with toast or pancakes.',
+    cheese: 'Cheese is perfect for pizzas or sandwiches.',
+    'ice cream': 'Ice cream is a favorite dessert for all.',
+    paneer: 'Paneer is versatile in Indian curries or snacks.'
+  };
+
+  // Define dynamic commands
+  const commands = {};
+
+  for (const product in productCombinations) {
+    commands[product] = (function(product) {
+      return function() {
+        alert(`${product}: ${productCombinations[product]}`);
+      };
+    })(product);
+  }
+
+  // Add commands to Annyang
+  annyang.addCommands(commands);
+
+  // Start listening
+  annyang.start();
+}
+
+// Function to toggle dark mode
 function toggleDarkMode() {
   const body = document.body;
-  body.classList.toggle("dark-mode");
   const icon = document.getElementById("theme-toggle-icon");
+
+  // Toggle dark mode class on body
+  body.classList.toggle("dark-mode");
+
+  // Change the theme icon based on the mode
   if (body.classList.contains("dark-mode")) {
-    icon.src = "./img/moon.png";
-    localStorage.setItem("dark-mode", "enabled");
+    icon.src = "./img/moon.png";  // Use moon icon for dark mode
+    localStorage.setItem("theme", "dark");  // Save dark mode in localStorage
   } else {
-    icon.src = "./img/sun1.png";
-    localStorage.setItem("dark-mode", "disabled");
+    icon.src = "./img/sun1.png";  // Use sun icon for light mode
+    localStorage.setItem("theme", "light");  // Save light mode in localStorage
   }
+
+  // Apply dark mode styles to specific elements
   const navbarLinks = document.querySelectorAll(".navbar-nav .nav-link");
   navbarLinks.forEach((link) => {
     link.classList.toggle("dark-mode");
   });
+
   const searchInput = document.querySelector(".search-input");
   searchInput.classList.toggle("dark-mode");
 
@@ -238,42 +245,32 @@ function toggleDarkMode() {
 
 // On page load, check if dark mode is enabled
 window.onload = () => {
-  if (localStorage.getItem("dark-mode") === "enabled") {
+  const savedTheme = localStorage.getItem("theme");
+
+  // Apply saved theme from localStorage on all pages
+  if (savedTheme === "dark") {
     document.body.classList.add("dark-mode");
     const icon = document.getElementById("theme-toggle-icon");
-    icon.src = "./img/moon.png";
+    icon.src = "./img/moon.png";  // Set the icon to moon if dark mode is enabled
+
+    // Apply dark mode styles to other elements (navbar, inputs, buttons)
     const navbarLinks = document.querySelectorAll(".navbar-nav .nav-link");
     navbarLinks.forEach((link) => {
       link.classList.add("dark-mode");
     });
+
     const searchInput = document.querySelector(".search-input");
     searchInput.classList.add("dark-mode");
 
     const signupButton = document.querySelector(".create-signup-btn");
     signupButton.classList.add("dark-mode");
+  } else {
+    // Light mode settings
+    const icon = document.getElementById("theme-toggle-icon");
+    icon.src = "./img/sun1.png";  // Set the icon to sun if light mode is enabled
   }
 };
 
-// Function to toggle dark mode
-function toggleDarkMode() {
-  let currentTheme = localStorage.getItem("theme");
-  if (currentTheme === "dark") {
-    document.body.classList.remove("dark-mode");
-    localStorage.setItem("theme", "light");
-  } else {
-    document.body.classList.add("dark-mode");
-    localStorage.setItem("theme", "dark");
-  }
-}
-window.onload = function () {
-  let savedTheme = localStorage.getItem("theme");
-
-  if (savedTheme === "dark") {
-    document.body.classList.add("dark-mode");
-  } else {
-    document.body.classList.remove("dark-mode");
-  }
-};
 
 // searchbar products array
 const products = [

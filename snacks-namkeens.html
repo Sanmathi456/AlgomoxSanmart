@@ -9,13 +9,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/styles.css" />
   <style>
-     @media (max-width: 768px) { 
-  .lastcard {
-    margin-bottom: 70px;
-  }
-}
+    @media (max-width: 768px) {
+      .lastcard {
+        margin-bottom: 70px;
+      }
+    }
   </style>
 </head>
+
 <body>
   <header>
     <nav class="navbar navbar-expand-lg bg-dark navbar-dark fixed-top">
@@ -86,7 +87,7 @@
                   <button class="create-signup-btn">Signup</button>
                 </a>
               </div>
-              <!-- Dark Mode Toggle (same as before) -->
+           
               <div class="dark-mode-toggle d-flex align-items-center ms-3">
                 <img src="./img/sun.png" id="theme-toggle-icon" alt="Toggle Dark Mode" class="toggle-icon"
                   onclick="toggleDarkMode()" style="cursor: pointer" />
@@ -98,7 +99,6 @@
     </nav>
   </header>
 
-  <!-- Product Display Section (for Vegetables & Fruits) -->
   <div class="row filterable_cards" id="products">
     <section class="container mt-5 pt-5">
       <h2 class="text-center vegfrucol mb-4">ready-to-eat</h2>
@@ -110,7 +110,6 @@
         <button data-name="others">Others</button>
       </div>
 
-      <!-- Dropdown for mobile view -->
       <select class="filter_dropdown" aria-label="Filter Products">
         <option value="all">All</option>
         <option value="biscuits">Biscuits</option>
@@ -124,10 +123,10 @@
           <div class="col-md-3">
             <div class="product-card" data-name="biscuits">
               <a href="snacksdetails.html" class="product-link">
-              <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" onclick="toggleFavorite(0)" />
-              <img src="./img/bourbon.jpg" class="product-image" alt="Apple" />
-              <div class="product-name">Bourbon</div>
-              <div class="product-price">$10.99</div>
+                <img src="./img/heart.jpg" class="favorite-icon" alt="Favorite" onclick="toggleFavorite(0)" />
+                <img src="./img/bourbon.jpg" class="product-image" alt="Apple" />
+                <div class="product-name">Bourbon</div>
+                <div class="product-price">$10.99</div>
               </a>
               <button class="add-to-cart-btn">Add to Cart</button>
             </div>
@@ -561,8 +560,6 @@
       const buttons = document.querySelectorAll(".filter_buttons button");
       const dropdown = document.querySelector(".filter_dropdown");
       const productCards = document.querySelectorAll(".col-md-3");
-
-      // Function to filter products
       function filterProducts(category) {
         productCards.forEach((card) => {
           const productCategory = card.getAttribute("data-name");
@@ -570,8 +567,6 @@
             category === "all" || productCategory === category ? "block" : "none";
         });
       }
-
-      // Add click event for buttons
       buttons.forEach((button) => {
         button.addEventListener("click", () => {
           buttons.forEach((b) => b.classList.remove("active"));
@@ -580,16 +575,32 @@
           filterProducts(category);
         });
       });
-
-      // Add change event for dropdown
       dropdown.addEventListener("change", () => {
         const category = dropdown.value;
         filterProducts(category);
       });
-
-      // Initial load: Show all products
       filterProducts("all");
     });
+
+    // Function to toggle dark mode
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark-mode");
+      if (document.body.classList.contains("dark-mode")) {
+        localStorage.setItem("theme", "dark");
+      } else {
+        localStorage.setItem("theme", "light");
+      }
+    }
+    window.onload = function () {
+      const savedTheme = localStorage.getItem("theme");
+      if (savedTheme === "dark") {
+        document.body.classList.add("dark-mode");
+      } else {
+        document.body.classList.remove("dark-mode");
+      }
+    };
+
+
   </script>
 
   <script src="./js/script.js"></script>

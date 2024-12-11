@@ -1,406 +1,360 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Designing the Ultimate Smart Grocery Shopping Experience</title>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
-    />
-    <link rel="stylesheet" href="css/styles.css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
-      rel="stylesheet"
-    />
-    <style>
-      body {
-        font-family: "Poppins", sans-serif;
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Designing the Ultimate Smart Grocery Shopping Experience</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+    }
+
+    .product-card {
+      border: 1px solid #b68d40;
+      border-radius: 10px;
+      padding: 10px;
+      margin: 10px;
+      text-align: center;
+      background-color: tan;
+    }
+
+    .product-card:hover {
+      background: linear-gradient(45deg, #2c313c 50%, #b68d40 50%);
+      color: white;
+      border: 2px solid #2c313c;
+    }
+
+    .product-image {
+      width: 100%;
+      height: auto;
+    }
+
+    .favorite-icon {
+      width: 20px;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      cursor: pointer;
+    }
+
+    .add-to-cart-btn,
+    .remove-product-btn {
+      margin-top: 10px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .remove-product-btn {
+      background-color: #dc3545;
+    }
+
+    .add-to-cart-btn:hover {
+      background-color: #218838;
+    }
+
+    .remove-product-btn:hover {
+      background-color: #c82333;
+    }
+
+    .scrolling-message {
+      width: 100%;
+      overflow: hidden;
+      white-space: nowrap;
+      position: fixed;
+      bottom: 0;
+      background: red;
+      color: #2c313c;
+      font-size: 1.2rem;
+      font-family: Arial, sans-serif;
+      font-weight: bold;
+      text-align: center;
+      z-index: 1000;
+      animation: blink 1.5s infinite step-start;
+    }
+
+    .scrolling-message span {
+      display: inline-block;
+      padding-left: 100%;
+      animation: scroll 20s linear infinite;
+      color: white;
+    }
+
+    @keyframes scroll {
+      0% {
+        transform: translateX(100%);
+      }
+
+      100% {
+        transform: translateX(-100%);
+      }
+    }
+
+    @keyframes blink {
+
+      0%,
+      50%,
+      100% {
+        opacity: 1;
+      }
+
+      25%,
+      75% {
+        opacity: 0;
+      }
+    }
+
+    #add-product-btn {
+      background-color: tan;
+      color: black;
+      border-color: tan;
+    }
+
+    #add-product-btn:hover {
+      background-color: #d2b48c;
+    }
+
+    /* Dark Mode Styles */
+    body.dark-mode {
+      background-color: #121212;
+      color: white;
+    }
+
+    body.dark-mode .navbar {
+      background-color: #333;
+    }
+
+    body.dark-mode .product-card {
+      background-color: #333;
+      border-color: #555;
+    }
+
+    body.dark-mode .search-input {
+      background-color: #555;
+      color: white;
+    }
+
+    body.dark-mode .remove-btn {
+      background-color: #444;
+    }
+
+    body.dark-mode .navbar-nav .nav-link {
+      color: white;
+    }
+
+    body.dark-mode .navbar .navbar-toggler-icon {
+      background-color: white;
+    }
+
+    /* Navbar adjustments for dark mode */
+    body.dark-mode .search-bar .search-input {
+      background-color: #555;
+      color: white;
+    }
+
+    /* Responsive styles */
+    @media (max-width: 768px) {
+      .navbar-nav {
+        text-align: center;
+      }
+
+      .navbar-collapse {
+        justify-content: center;
       }
 
       .product-card {
-        border: 1px solid #b68d40;
-        border-radius: 10px;
-        padding: 10px;
-        margin: 10px;
-        text-align: center;
-        background-color: tan;
+        margin: 5px;
+        padding: 15px;
       }
 
-      .product-card:hover {
-        background: linear-gradient(45deg, #2c313c 50%, #b68d40 50%);
-        color: white;
-        border: 2px solid #2c313c;
+      .product-list {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
       }
 
-      .product-image {
-        width: 100%;
-        height: auto;
+      #product-form {
+        display: block;
+        margin-top: 20px;
       }
+    }
 
-      .favorite-icon {
-        width: 20px;
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        cursor: pointer;
-      }
-
-      .add-to-cart-btn,
-      .remove-product-btn {
-        margin-top: 10px;
-        background-color: #28a745;
-        color: white;
-        border: none;
-        padding: 5px 10px;
-        cursor: pointer;
-        border-radius: 5px;
-      }
-
-      .remove-product-btn {
-        background-color: #dc3545;
-      }
-
-      .add-to-cart-btn:hover {
-        background-color: #218838;
-      }
-
-      .remove-product-btn:hover {
-        background-color: #c82333;
-      }
-
+    @media (max-width: 576px) {
       .scrolling-message {
-        width: 100%;
-        overflow: hidden;
-        white-space: nowrap;
-        position: fixed;
-        bottom: 0;
-        background: red;
-        color: #2c313c;
-        font-size: 1.2rem;
-        font-family: Arial, sans-serif;
-        font-weight: bold;
-        text-align: center;
-        z-index: 1000;
-        animation: blink 1.5s infinite step-start;
+        font-size: 1rem;
       }
+    }
+  </style>
+</head>
 
-      .scrolling-message span {
-        display: inline-block;
-        padding-left: 100%;
-        animation: scroll 20s linear infinite;
-        color: white;
-      }
+<body>
+  <!-- Header Section -->
+  <header>
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark fixed-top">
+      <div class="container-fluid">
+        <!-- Logo and Brand Name -->
+        <a class="navbar-brand d-flex align-items-center" href="#">
+          <img src="./img/grocery.jpg" class="logo" alt="Sanmathi Logo" />
+          <span class="martname">SANMATHI MART</span>
+        </a>
 
-      @keyframes scroll {
-        0% {
-          transform: translateX(100%);
-        }
+        <!-- Toggler for Mobile View -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-        100% {
-          transform: translateX(-100%);
-        }
-      }
+        <!-- Navbar Content -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <div class="d-flex flex-column flex-lg-row w-100 align-items-center">
+            <!-- Menu -->
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <select class="form-select" id="category" onchange="redirectToPage()">
+                  <option value="">Shop by category</option>
+                  <option value="vegetables&fruits.html" class="selecthover">
+                    Vegetables & Fruits
+                  </option>
+                  <option value="snacks-namkeens.html">
+                    Snacks & Namkeens
+                  </option>
+                  <option value="ready-to-cook.html">Ready to Cook</option>
+                  <option value="ready-to-eat.html">Ready to Eat</option>
+                  <option value="baby-care.html">Baby Care</option>
+                  <option value="household-essentials.html">
+                    Household Essentials
+                  </option>
+                  <option value="stationery.html">Stationery</option>
+                  <option value="skin-care.html">Skin Care</option>
+                  <option value="dairyproducts.html">dairy products</option>
+                </select>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white" href="index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white" href="deal.html">Deals</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white" href="Newarrivals.html">New Arrivals</a>
+              </li>
+            </ul>
 
-      @keyframes blink {
-        0%,
-        50%,
-        100% {
-          opacity: 1;
-        }
+            <!-- search bar -->
+            <div class="search-bar">
+              <input type="text" class="search-input" placeholder="Search for products..." onkeyup="filterProducts()" />
+              <div class="search-icon">
+                <img src="./img/search.png" alt="Search" />
+              </div>
+            </div>
 
-        25%,
-        75% {
-          opacity: 0;
-        }
-      }
-
-      #add-product-btn {
-        background-color: tan;
-        color: black;
-        border-color: tan;
-      }
-
-      #add-product-btn:hover {
-        background-color: #d2b48c;
-      }
-
-      /* Dark Mode Styles */
-      body.dark-mode {
-        background-color: #121212;
-        color: white;
-      }
-
-      body.dark-mode .navbar {
-        background-color: #333;
-      }
-
-      body.dark-mode .product-card {
-        background-color: #333;
-        border-color: #555;
-      }
-
-      body.dark-mode .search-input {
-        background-color: #555;
-        color: white;
-      }
-
-      body.dark-mode .remove-btn {
-        background-color: #444;
-      }
-
-      body.dark-mode .navbar-nav .nav-link {
-        color: white;
-      }
-
-      body.dark-mode .navbar .navbar-toggler-icon {
-        background-color: white;
-      }
-
-      /* Navbar adjustments for dark mode */
-      body.dark-mode .search-bar .search-input {
-        background-color: #555;
-        color: white;
-      }
-
-      /* Responsive styles */
-      @media (max-width: 768px) {
-        .navbar-nav {
-          text-align: center;
-        }
-
-        .navbar-collapse {
-          justify-content: center;
-        }
-
-        .product-card {
-          margin: 5px;
-          padding: 15px;
-        }
-
-        .product-list {
-          display: grid;
-          grid-template-columns: 1fr;
-          gap: 20px;
-        }
-
-        #product-form {
-          display: block;
-          margin-top: 20px;
-        }
-      }
-
-      @media (max-width: 576px) {
-        .scrolling-message {
-          font-size: 1rem;
-        }
-      }
-    </style>
-  </head>
-
-  <body>
-    <!-- Header Section -->
-    <header>
-      <nav class="navbar navbar-expand-lg bg-dark navbar-dark fixed-top">
-        <div class="container-fluid">
-          <!-- Logo and Brand Name -->
-          <a class="navbar-brand d-flex align-items-center" href="#">
-            <img src="./img/grocery.jpg" class="logo" alt="Sanmathi Logo" />
-            <span class="martname">SANMATHI MART</span>
-          </a>
-
-          <!-- Toggler for Mobile View -->
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNav"
-            aria-controls="navbarNav"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-
-          <!-- Navbar Content -->
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <div
-              class="d-flex flex-column flex-lg-row w-100 align-items-center"
-            >
-              <!-- Menu -->
-              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                  <select
-                    class="form-select"
-                    id="category"
-                    onchange="redirectToPage()"
-                  >
-                    <option value="">Shop by category</option>
-                    <option value="vegetables&fruits.html" class="selecthover">
-                      Vegetables & Fruits
-                    </option>
-                    <option value="snacks-namkeens.html">
-                      Snacks & Namkeens
-                    </option>
-                    <option value="ready-to-cook.html">Ready to Cook</option>
-                    <option value="ready-to-eat.html">Ready to Eat</option>
-                    <option value="baby-care.html">Baby Care</option>
-                    <option value="household-essentials.html">
-                      Household Essentials
-                    </option>
-                    <option value="stationery.html">Stationery</option>
-                    <option value="skin-care.html">Skin Care</option>
-                    <option value="dairyproducts.html">dairy products</option>
-                  </select>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link text-white" href="index.html">Home</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link text-white" href="deal.html">Deals</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link text-white" href="Newarrivals.html"
-                    >New Arrivals</a
-                  >
-                </li>
-              </ul>
-
-              <!-- search bar -->
-              <div class="search-bar">
-                <input
-                  type="text"
-                  class="search-input"
-                  placeholder="Search for products..."
-                  onkeyup="filterProducts()"
-                />
-                <div class="search-icon">
-                  <img src="./img/search.png" alt="Search" />
-                </div>
+            <!-- Icons -->
+            <div class="icon-container d-flex align-items-center mt-2 mt-lg-0">
+              <a href="favourite.html" class="cart-icon">
+                <img src="./img/heart.jpg" alt="Favorite Products" />
+                <span class="cart-badge" id="fav-count">0</span>
+              </a>
+              <a href="cart.html" class="cart-icon">
+                <img src="./img/cart.png" alt="Cart" />
+                <span class="cart-badge" id="cart-count">0</span>
+              </a>
+              <div class="d-flex align-items-center">
+                <img src="./img/profile.png" alt="Profile" />
+                <a href="signup.html">
+                  <button class="create-signup-btn">Signup</button>
+                </a>
               </div>
 
-              <!-- Icons -->
-              <div
-                class="icon-container d-flex align-items-center mt-2 mt-lg-0"
-              >
-                <a href="favourite.html" class="cart-icon">
-                  <img src="./img/heart.jpg" alt="Favorite Products" />
-                  <span class="cart-badge" id="fav-count">0</span>
-                </a>
-                <a href="cart.html" class="cart-icon">
-                  <img src="./img/cart.png" alt="Cart" />
-                  <span class="cart-badge" id="cart-count">0</span>
-                </a>
-                <div class="d-flex align-items-center">
-                  <img src="./img/profile.png" alt="Profile" />
-                  <a href="signup.html">
-                    <button class="create-signup-btn">Signup</button>
-                  </a>
-                </div>
-
-                <!-- Dark Mode Toggle (same as before) -->
-                <div class="dark-mode-toggle d-flex align-items-center ms-3">
-                  <img
-                    src="./img/sun1.png"
-                    id="theme-toggle-icon"
-                    alt="Toggle Dark Mode"
-                    class="toggle-icon"
-                    onclick="toggleDarkMode()"
-                    style="cursor: pointer"
-                  />
-                </div>
+              <!-- Dark Mode Toggle (same as before) -->
+              <div class="dark-mode-toggle d-flex align-items-center ms-3">
+                <img src="./img/sun1.png" id="theme-toggle-icon" alt="Toggle Dark Mode" class="toggle-icon"
+                  onclick="toggleDarkMode()" style="cursor: pointer" />
               </div>
             </div>
           </div>
         </div>
-      </nav>
-    </header>
-
-    <!-- Shopping Cart Section -->
-    <div class="container mt-5 pt-5">
-      <div class="scrolling-message">
-        <span>Hi Everyone! Stay tuned for fresh updates on New Arrivals!</span>
       </div>
+    </nav>
+  </header>
 
-      <button id="add-product-btn" class="btn mt-5">Add New Product</button>
-
-      <div id="product-form" class="mb-4" style="display: none">
-        <div class="row">
-          <div class="col-md-3">
-            <input
-              type="text"
-              id="product-name"
-              class="form-control mt-3 mb-2"
-              placeholder="Product Name"
-            />
-          </div>
-          <div class="col-md-3">
-            <input
-              type="text"
-              id="product-price"
-              class="form-control mb-3 mt-3"
-              placeholder="Product Price"
-            />
-          </div>
-          <div class="col-md-3">
-            <input
-              type="file"
-              id="product-image"
-              class="form-control mt-3 mb-2"
-            />
-          </div>
-          <div class="col-md-3">
-            <button class="btn btn-primary mt-4 mb-4" onclick="addProduct()">
-              Add Product
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <div class="row product-list"></div>
+  <!-- Shopping Cart Section -->
+  <div class="container mt-5 pt-5">
+    <div class="scrolling-message">
+      <span>Hi Everyone! Stay tuned for fresh updates on New Arrivals!</span>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-      // Function to add a new product
-      function addProduct() {
-        const name = document.getElementById("product-name").value;
-        const price = document.getElementById("product-price").value;
-        const image = document.getElementById("product-image").files[0];
+    <button id="add-product-btn" class="btn mt-5">Add New Product</button>
 
-        if (name && price && image) {
-          const product = {
-            name: name,
-            price: price,
-            image: URL.createObjectURL(image),
-          };
-          let products = JSON.parse(localStorage.getItem("products")) || [];
+    <div id="product-form" class="mb-4" style="display: none">
+      <div class="row">
+        <div class="col-md-3">
+          <input type="text" id="product-name" class="form-control mt-3 mb-2" placeholder="Product Name" />
+        </div>
+        <div class="col-md-3">
+          <input type="text" id="product-price" class="form-control mb-3 mt-3" placeholder="Product Price" />
+        </div>
+        <div class="col-md-3">
+          <input type="file" id="product-image" class="form-control mt-3 mb-2" />
+        </div>
+        <div class="col-md-3">
+          <button class="btn btn-primary mt-4 mb-4" onclick="addProduct()">
+            Add Product
+          </button>
+        </div>
+      </div>
+    </div>
 
-          // Add new product
-          products.push(product);
-          localStorage.setItem("products", JSON.stringify(products));
-          loadProducts();
-        }
-      }
-      function removeProduct(button) {
-        const productContainer = button.closest(".col-md-3");
-        const productName = productContainer.querySelector("h5").textContent;
-        let products = JSON.parse(localStorage.getItem("products"));
+    <div class="row product-list"></div>
+  </div>
 
-        products = products.filter((product) => product.name !== productName);
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Function to add a new product
+    function addProduct() {
+      const name = document.getElementById("product-name").value;
+      const price = document.getElementById("product-price").value;
+      const image = document.getElementById("product-image").files[0];
+
+      if (name && price && image) {
+        const product = {
+          name: name,
+          price: price,
+          image: URL.createObjectURL(image),
+        };
+        let products = JSON.parse(localStorage.getItem("products")) || [];
+
+        // Add new product
+        products.push(product);
         localStorage.setItem("products", JSON.stringify(products));
-        productContainer.remove();
+        loadProducts();
       }
-      function loadProducts() {
-        const products = JSON.parse(localStorage.getItem("products")) || [];
-        const productList = document.querySelector(".product-list");
-        productList.innerHTML = "";
+    }
+    function removeProduct(button) {
+      const productContainer = button.closest(".col-md-3");
+      const productName = productContainer.querySelector("h5").textContent;
+      let products = JSON.parse(localStorage.getItem("products"));
 
-        products.forEach((product) => {
-          const productContainer = document.createElement("div");
-          productContainer.classList.add("col-md-3");
+      products = products.filter((product) => product.name !== productName);
+      localStorage.setItem("products", JSON.stringify(products));
+      productContainer.remove();
+    }
+    function loadProducts() {
+      const products = JSON.parse(localStorage.getItem("products")) || [];
+      const productList = document.querySelector(".product-list");
+      productList.innerHTML = "";
 
-          const productCard = `
+      products.forEach((product) => {
+        const productContainer = document.createElement("div");
+        productContainer.classList.add("col-md-3");
+
+        const productCard = `
             <div class="product-card">
               <img src="${product.image}" class="product-image" alt="${product.name}" />
               <h5>${product.name}</h5>
@@ -408,20 +362,38 @@
               <button class="remove-product-btn" onclick="removeProduct(this)">Remove</button>
             </div>
           `;
-          productContainer.innerHTML = productCard;
-          productList.appendChild(productContainer);
-        });
+        productContainer.innerHTML = productCard;
+        productList.appendChild(productContainer);
+      });
+    }
+    loadProducts();
+    document
+      .getElementById("add-product-btn")
+      .addEventListener("click", function () {
+        const form = document.getElementById("product-form");
+        form.style.display = form.style.display === "none" ? "block" : "none";
+      });
+    // Function to toggle dark mode
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark-mode");
+      if (document.body.classList.contains("dark-mode")) {
+        localStorage.setItem("theme", "dark");
+      } else {
+        localStorage.setItem("theme", "light");
       }
-      loadProducts();
+    }
+    window.onload = function () {
+      const savedTheme = localStorage.getItem("theme");
+      if (savedTheme === "dark") {
+        document.body.classList.add("dark-mode");
+      } else {
+        document.body.classList.remove("dark-mode");
+      }
+    };
 
-      // Toggle add product form
-      document
-        .getElementById("add-product-btn")
-        .addEventListener("click", function () {
-          const form = document.getElementById("product-form");
-          form.style.display = form.style.display === "none" ? "block" : "none";
-        });
-    </script>
-    <script src="./js/script.js"></script>
-  </body>
+
+  </script>
+  <script src="./js/script.js"></script>
+</body>
+
 </html>
