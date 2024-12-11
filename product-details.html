@@ -44,6 +44,25 @@
     </div>
     <div class="reviews-list" id="reviews-list"></div>
   </section>
+<script>
+    document.getElementById("whatsapp-btn").addEventListener("click", function () {
+    const phoneNumber = "6369306199"; 
+    const message = "Hello! I wanted to share this with you.";
+    const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    window.open(whatsappURL, "_blank");
+  });
+  document.getElementById("submit-review").addEventListener("click", function () {
+  const name = document.getElementById("review-name").value;
+  const comment = document.getElementById("review-comment").value;
+  if (name && comment) {
+    const reviewList = document.getElementById("reviews-list");
+    const newReview = document.createElement("div");
+    newReview.classList.add("review");
+    newReview.innerHTML = `<h4>${name}</h4><p>${comment}</p>`;
+    reviewList.appendChild(newReview);
+  }
+});
+  </script>
 
 
 </body>
